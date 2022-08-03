@@ -1,3 +1,32 @@
+# Project Transformer
+Project transformer focus on attempting to transform the assignments into gamification in order 
+to help our students understand the materials that are being taught
+
+# Overview
+Project Transformer leverage TwilioQuest Extensions to add new contents to TwilioQuest for NMAD courses. As a pilot, currently only 
+NMAD 180 is supported.
+
+# Notes
+- TwilioQuest comes with some extensions bundled as part of the platform. In order to reduce the noise and avoid confusing our students,
+we need to turn off those bundles. As it stands, there is no simple way to turn the bundle extensions. However, we can leverage the architecture
+design of TwilioQuest to get around this. Any extension that have the level.json name as an existing extension, will override the existing one. Furthermore,
+we will need to set the is_mission to false and exclude the nav properties from the json files to prevent those extensions from showing up in the training mission and navigation map consoles.
+
+- bundled extensions that needed to be disabled
+  - Training Missions
+    - Twilio API setup
+    - Twilio Messaging API
+    - Twilio Voice API
+    - Raid the Dark Ducktypium Forge
+  - Navigation map
+    - Javascript test lab
+    - The tower of Infinite knowledge
+    - Destination template
+    - The forest of open source
+    - The pythonic Temple
+    - API Academy
+
+
 # TwilioQuest Extension Template
 Interested in creating an extension for TwilioQuest? You've come to the right place! Using this repository as a template, you can create new levels, objectives, characters, and items in TwilioQuest.
 
