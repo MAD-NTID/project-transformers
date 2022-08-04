@@ -14,5 +14,5 @@
   "flavorTextOverrides": {
     "bookshelf": "There's nothing like a good book."
   },
-  "objectives": ["syllabus_overview"]
+  "objectives": ["syllabus_overview", "integrity","requirements","gradings"]
 }

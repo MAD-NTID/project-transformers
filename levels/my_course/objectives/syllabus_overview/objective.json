@@ -4,15 +4,27 @@
   "validation_fields": [
     {
       "name": "answer1",
-      "type": "text",
+      "type": "textarea",
       "placeholder": "type your answer here",
-      "label": "What is the name of the company that makes TwilioQuest?"
+      "label": "What is the purpose of the syllabus?"
     },
     {
       "name": "answer2",
+      "type": "textarea",
+      "placeholder": "type your answer here",
+      "label": "What are some of the course objectives?"
+    },
+    {
+      "name": "answer3",
       "type": "text",
       "placeholder": "type your answer here",
-      "label": "What is 2 + 2? Write the numerical response below."
+      "label": "Who is your professor?"
+    },
+    {
+      "name": "answer4",
+      "type": "text",
+      "placeholder": "type your answer here",
+      "label": "What is the required textbook?"
     }
   ],
   "rewards": {
