@@ -1,20 +1,30 @@
-# The importance of the Syllabus
+# Academic Integrity Policy
 
 <div class="aside">
-<h3>To-Do List</h3>
+<h3>Requirements</h3>
 <ul>
-  <li>Read the syllabus</li>
-  <li>Answer some basic questions regarding the syllabus</li>
+  <li>Create a function called `balanceBrackets`.</li>
+  <li>This function receives an array of brackets (brackets being any of the following "[", "]", "(", ")", "{", "}").</li>
+  <li>Return true if the brackets are balanced, and false otherwise (the examples explain it best).</li>
+  <li>Return true if the input array is empty.</li>
+  <li>Once you're done, press <em>HACK</em>.</li>
 </ul>
 </div>
 
 
-## What is a syllabus
-A syllabus is a document that contains information on what the course is about, professor information, office hours and
-what is required for you to be successful in the course.
+It looks like this part of the forge is responsible for generating power and distributing it to the rest of the system. This particular terminal ensures the power generator has a balanced fuel mixture.
 
-### NMAD 180 Syllabus
-In order to complete this mission,you will need to read througly the [syllabus](./resource_files/syllabus.pdf)
-for this course.
+Create a function `balanceBrackets` that accepts an array of brackets. This function should return a boolean (true/false) based on whether or not the array of brackets is balanced.
 
-Describe the final values for your player one last time. Then ask them to click the _HACK_ button.
+<br>
+
+## Examples
+
+- `["{", "}”]` -> `true`
+- `[]` -> `true`
+- `["{", "[", "}”]` -> `false`
+- `["(", ")”, "[", "(", "{", "}”, ")”, "]”]` -> `true`
+
+<br>
+
+Once you've writen this function, click the _HACK_ button!

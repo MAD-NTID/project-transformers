@@ -1,6 +1,6 @@
 {
-  "title": "Answer some questions regarding the syllabus",
-  "description": "Read the syllabus then answer some questions",
+  "title": "Understanding Academic Integrity",
+  "description": "Gain an understanding of academic integrity so you can protect yourself and most importantly, your grades",
   "validation_fields": [
     {
       "name": "answer1",
@@ -16,6 +16,6 @@
     }
   ],
   "rewards": {
-    "xp": 100
+    "xp": 150
   }
 }
