@@ -149,12 +149,12 @@
                         {
                          "name":"hackable",
                          "type":"bool",
-                         "value":false
+                         "value":true
                         }, 
                         {
                          "name":"objectiveName",
                          "type":"string",
-                         "value":"example_objective2"
+                         "value":"gradings"
                         }],
                  "rotation":0,
                  "type":"",
@@ -268,14 +268,14 @@
                         {
                          "name":"observation",
                          "type":"string",
-                         "value":"Corey seems busy. <br\/><br\/>\n\nBy the way,  this is \"observation text\" that you can display when the player interacts with an NPC.  Check the <em>observation<\/em> property of this NPC object in the tile map."
+                         "value":"You know you want an A. Unlock the gate behind me to find out how."
                         }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":321,
-                 "y":262
+                 "x":334.564111621335,
+                 "y":491.68562345461
                 }, 
                 {
                  "gid":11028,
@@ -355,22 +355,45 @@
                  "y":333.93758733116
                 }, 
                 {
-                 "gid":10009,
-                 "height":24,
-                 "id":129,
+                 "gid":10011,
+                 "height":48,
+                 "id":130,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"hackable",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"objectiveName",
+                         "type":"string",
+                         "value":"requirements"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":52.1059696220417,
+                 "x":358.26351112681,
+                 "y":478.776404097492
+                }, 
+                {
+                 "gid":10013,
+                 "height":72,
+                 "id":132,
                  "name":"",
                  "properties":[
                         {
                          "name":"objectiveName",
                          "type":"string",
-                         "value":"integrity"
+                         "value":"gradings"
                         }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":24,
-                 "x":369.853749417792,
-                 "y":494.90638099674
+                 "x":409.391734369481,
+                 "y":512.894383610032
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -418,7 +441,7 @@
          "y":0
         }],
  "nextlayerid":44,
- "nextobjectid":130,
+ "nextobjectid":133,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.8.2",
