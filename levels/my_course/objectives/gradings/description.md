@@ -24,4 +24,13 @@ is an automatic failure in this course.
 Ranges for letter grades of “C,” “D,” and “F” are different from what is frequently used in
 other courses. Further, be aware that you must have a letter grade of “C” or better (as
 defined above) to continue to the next programming course (NMAD-181 Programming
-Fundamentals II: Mobile Domain)```
+Fundamentals II: Mobile Domain)
+```
+
+# Rounding of Final Grade
+Rounding of your final grade is at the discretion of your instructor. A grade value may only be rounded to the
+next highest whole number. 
+```
+For example, a final grade of 88.75 may be rounded up to 89 but NOT to 90. All
+decisions to round grades are final
+```
