@@ -5,7 +5,7 @@ Node.js module (since that's what this is!)
 */
 const assert = require("assert");
 const R = require("ramda");
-const { isTwilio } = require("../lib/example_helper");
+const { isDoWellOnAllAssignments, isCanSkipExam, isCorrectlyDefinedICE} = require("../lib/requirements_helpers");
 
 /*
 Objective validators export a single function, which is passed a helper
@@ -18,27 +18,22 @@ have completed the challenge as instructed.
 */
 module.exports = async function (helper) {
   // We start by getting the user input from the helper
-  const { answer1, answer2 } = helper.validationFields;
+  const { answer1, answer2, answer3, answer4,answer5,answer6,answer7} = helper.validationFields;
 
-  // Next, you test the user input - fail fast if they get one of the
-  // answers wrong, or some aspect is wrong! Don't provide too much
-  // negative feedback at once, have the player iterate.
-  if (!answer1 || !isTwilio(answer1)) {
-    return helper.fail(`
-      The answer to the first question is incorrect. The company that
-      makes TwilioQuest starts with a "T" and ends with a "wilio".
-    `);
+  if(!answer1 || !isDoWellOnAllAssignments(answer1)) {
+    return helper.fail("Incorrect answer. Please read 'The requirements' again.");
   }
 
-  // You can use npm or core Node.js dependencies in your validators!
-  try {
-    assert.strictEqual(R.add(2, 2), Number(answer2));
-  } catch (e) {
-    return helper.fail(`
-      The second answer you provided was either not a number, or not the
-      correct response for "what is 2 + 2".
-    `);
+  if(!answer2 || !isCanSkipExam(answer2)) {
+    return helper.fail("Incorrect answer. Please read the exam section on the requirement again");
   }
+
+  if(!answer3 || !isCorrectlyDefinedICE(answer3)) {
+    return helper.fail("Incorrect answer. Please read the ICE section again")
+  }
+
+
+
 
   // The way we usually write validators is to fail fast, and then if we reach
   // the end, we know the user got all the answers right!
