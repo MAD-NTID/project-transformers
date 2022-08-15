@@ -17,13 +17,13 @@
     {
       "name": "answer3",
       "type": "text",
-      "placeholder": "",
+      "placeholder": "Your answer here",
       "label": "What does ICE stands for?"
     },
     {
       "name": "answer4",
       "type": "text",
-      "placeholder": "",
+      "placeholder": "Your answer here",
       "label": "When are ICE due?"
     },
     {

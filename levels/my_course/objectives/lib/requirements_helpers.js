@@ -1,21 +1,24 @@
 function isDoWellOnAllAssignments(answer){
-    return answer===true;
+    return answer==='true';
 }
 
 function isCanSkipExam(answer){
-    return answer===false;
+    return answer==='false';
 }
 
 function isCorrectlyDefinedICE(answer){
-    if(answer==='undefined' || answer===null)
+    if(!answer || answer==='undefined')
         return false;
+
+    console.log(answer);
+    console.log(typeof answer);
 
     answer = answer.toLowerCase();
     return answer.includes('in-class exercise') || answer.includes('in class exercise');
 }
 
 function isCorrectICEDue(answer){
-    if(answer==='undefined' || answer===null)
+    if(!answer)
         return false;
 
     answer = answer.toLowerCase();
@@ -24,7 +27,7 @@ function isCorrectICEDue(answer){
 }
 
 function isCorrectHomeworkAssigned(answer){
-    if(answer==='undefined' || answer===null)
+    if(!answer)
         return false;
     answer = answer.toLowerCase();
 
@@ -32,7 +35,11 @@ function isCorrectHomeworkAssigned(answer){
 }
 
 function isCorrectZeroGradeIfSubmitThreeDaysOrMore(answer){
-    return answer === true;
+    return answer === 'true';
+}
+
+function isCorrectTotalProject(answer){
+    return answer === '3';
 }
 
 module.exports = {
@@ -41,5 +48,6 @@ module.exports = {
     isCorrectlyDefinedICE,
     isCorrectICEDue,
     isCorrectHomeworkAssigned,
-    isCorrectZeroGradeIfSubmitThreeDaysOrMore
+    isCorrectZeroGradeIfSubmitThreeDaysOrMore,
+    isCorrectTotalProject
 };
