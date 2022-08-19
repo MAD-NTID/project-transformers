@@ -5,6 +5,7 @@
   "questDescription": "Example level for VR training. See what's possible!",
   "mission_icon": "discord.png",
   "is_mission": true,
+  "prereqs": ["my_course.syllabus_overview", "my_course.requirements", "my_course.gradings"],
   "priority": 10,
   "backgroundMusic": "hackertheme_104771b",
   "backgroundEffect": {
@@ -14,5 +15,5 @@
   "flavorTextOverrides": {
     "bookshelf": "There's nothing like a good book."
   },
-  "objectives": ["example_objective", "example_objective2"]
+  "objectives": ["join"]
 }

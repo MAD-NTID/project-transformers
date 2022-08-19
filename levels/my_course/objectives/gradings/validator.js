@@ -35,6 +35,6 @@ module.exports = async function (helper) {
   if(!is75Minimum(answer5))
     return helper.fail('Incorrect answer. Please review the minimum require grade in order to be able to take NMAD 181 and other courses');
 
-  helper.success('Hooray!', 'You did it!!!');
+  helper.success('Onward!!!');
 
 };

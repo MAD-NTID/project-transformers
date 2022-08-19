@@ -5,7 +5,7 @@ Node.js module (since that's what this is!)
 */
 const assert = require("assert");
 const R = require("ramda");
-const { isTwilio } = require("../lib/example_helper");
+const { isTwilio, isChannels, isSecretCode, isCanDo} = require("../lib/join_helper");
 
 /*
 Objective validators export a single function, which is passed a helper
@@ -18,31 +18,18 @@ have completed the challenge as instructed.
 */
 module.exports = async function (helper) {
   // We start by getting the user input from the helper
-  const { answer1, answer2 } = helper.validationFields;
+  const { answer1, answer2, answer3 } = helper.validationFields;
 
-  // Next, you test the user input - fail fast if they get one of the
-  // answers wrong, or some aspect is wrong! Don't provide too much
-  // negative feedback at once, have the player iterate.
-  if (!answer1 || !isTwilio(answer1)) {
-    return helper.fail(`
-      The answer to the first question is incorrect. The company that
-      makes TwilioQuest starts with a "T" and ends with a "wilio".
-    `);
-  }
+  if(!isChannels(answer1))
+    return helper.fail('Incorrect answer! Check the list of channels on NMAD-180 discord again');
 
-  // You can use npm or core Node.js dependencies in your validators!
-  try {
-    assert.strictEqual(R.add(2, 2), Number(answer2));
-  } catch (e) {
-    return helper.fail(`
-      The second answer you provided was either not a number, or not the
-      correct response for "what is 2 + 2".
-    `);
-  }
+  if(!isSecretCode(answer2))
+    return helper.fail('Incorrect secret code! Please copy and paste the secret code');
+
+  if(!isCanDo(answer3))
+    return helper.fail('Incorrect answer! Please check the communication section in the objective again');
 
   // The way we usually write validators is to fail fast, and then if we reach
   // the end, we know the user got all the answers right!
-  helper.success(`
-    Hooray! You did it!
-  `);
+  helper.success(`Whoa!!! There is no stopping you now, you are on a roll!`);
 };
