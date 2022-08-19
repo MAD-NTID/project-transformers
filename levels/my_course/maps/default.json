@@ -98,12 +98,12 @@
                         {
                          "name":"levelName",
                          "type":"string",
-                         "value":"vr_mission_template"
+                         "value":"discord"
                         }, 
                         {
                          "name":"mapName",
                          "type":"string",
-                         "value":"space_garden"
+                         "value":"default"
                         }, 
                         {
                          "name":"playerEntryPoint",
