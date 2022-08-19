@@ -2,8 +2,7 @@
 Each college/course have their own grading scale. It is important that you
 read the grading scale below and understand what letter each grade represented.
 
-In NMAD-180, you will need a 75%(C) in order to pass this course. Anything below 75%
-is an automatic failure in this course.
+In NMAD-180, you will need a 75%(C) in order to be able to take NMAD-181 and other MAD related courses.
 
 | Average                                      | Grade                             |
 |----------------------------------------------|-----------------------------------|
