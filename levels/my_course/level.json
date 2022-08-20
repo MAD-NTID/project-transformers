@@ -5,7 +5,7 @@
   "questDescription": "Understand the course overview and requirements in order to succeed in this course",
   "mission_icon": "mycourses.png",
   "is_mission": true,
-  "priority": 10,
+  "priority": 1,
   "backgroundMusic": "hackertheme_104771b",
   "backgroundEffect": {
     "key": "vr",
