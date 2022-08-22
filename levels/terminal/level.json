@@ -12,7 +12,7 @@
     "options": {}
   },
   "flavorTextOverrides": {
-    "bookshelf": "There's nothing like a good book."
+    "bookshelf": "There's nothing like a good book. "
   },
   "objectives": ["example_objective", "example_objective2"]
 }
