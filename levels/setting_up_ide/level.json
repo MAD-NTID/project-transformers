@@ -4,7 +4,7 @@
   "questTitle": "Virtual Reality Training",
   "questDescription": "Example level for VR training. See what's possible!",
   "mission_icon": "vscode.webp",
-  "is_mission": true,
+  "is_mission": false,
   "priority": 10,
   "backgroundMusic": "hackertheme_104771b",
   "backgroundEffect": {
