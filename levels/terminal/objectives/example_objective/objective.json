@@ -5,15 +5,14 @@
     {
       "name": "answer1",
       "type": "text",
-      "placeholder": "Your answer here",
-      "label": "What is the command to change the directory?"
-    }
-    ,
+      "placeholder": "type your answer here",
+      "label": "What is the name of the company that makes TwilioQuest?"
+    },
     {
-      "name": "desktop_path",
+      "name": "answer2",
       "type": "text",
-      "placeholder": "the absolute path to the desktop folder",
-      "label": "Absolute path to the desktop"
+      "placeholder": "type your answer here",
+      "label": "What is 2 + 2? Write the numerical response below."
     }
   ],
   "rewards": {

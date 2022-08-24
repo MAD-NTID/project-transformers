@@ -138,7 +138,7 @@
                         {
                          "name":"objectiveName",
                          "type":"string",
-                         "value":"install_dotnet"
+                         "value":"install_bash"
                         }],
                  "rotation":0,
                  "type":"",
@@ -161,7 +161,7 @@
                         {
                          "name":"objectiveName",
                          "type":"string",
-                         "value":"variables_and_dataTypes"
+                         "value":"create_a_file"
                         }],
                  "rotation":0,
                  "type":"",
@@ -196,7 +196,7 @@
                         {
                          "name":"objectiveName",
                          "type":"string",
-                         "value":"create_project"
+                         "value":"show_current_directory"
                         }],
                  "rotation":0,
                  "type":"",
@@ -227,6 +227,11 @@
                          "name":"hackable",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"objectiveName",
+                         "type":"string",
+                         "value":"create_a_folder"
                         }],
                  "rotation":0,
                  "type":"",
@@ -331,7 +336,7 @@
  "nextobjectid":206,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.6.0",
+ "tiledversion":"1.8.2",
  "tileheight":24,
  "tilesets":[
         {
@@ -387,6 +392,6 @@
         }],
  "tilewidth":24,
  "type":"map",
- "version":"1.6",
+ "version":"1.8",
  "width":36
 }
