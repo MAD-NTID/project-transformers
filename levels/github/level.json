@@ -1,8 +1,8 @@
 {
-  "title": "05-Intro to Github",
-  "description": "This is an example of how to create a 'training mission' for the VR training environment aboard the Fog Owl!",
-  "questTitle": "Virtual Reality Training",
-  "questDescription": "Example level for VR training. See what's possible!",
+  "title": "04-Intro to Github",
+  "description": "Help Kuro master Github!",
+  "questTitle": "Mastering Github",
+  "questDescription": "Mastering Github is essential to passing in this course",
   "mission_icon": "github.png",
   "is_mission": false,
   "priority": 10,

@@ -103,17 +103,12 @@
                         {
                          "name":"levelName",
                          "type":"string",
-                         "value":"vr_mission_template"
-                        }, 
-                        {
-                         "name":"mapName",
-                         "type":"string",
-                         "value":"space_garden"
+                         "value":"fog_owl"
                         }, 
                         {
                          "name":"playerEntryPoint",
                          "type":"string",
-                         "value":"player_entry1"
+                         "value":"player_entry2"
                         }],
                  "rotation":0,
                  "type":"levelChange",
@@ -159,7 +154,7 @@
  "nextobjectid":139,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"2020.06.10",
+ "tiledversion":"1.8.2",
  "tileheight":24,
  "tilesets":[
         {
@@ -189,6 +184,6 @@
         }],
  "tilewidth":24,
  "type":"map",
- "version":1.4,
+ "version":"1.8",
  "width":32
 }

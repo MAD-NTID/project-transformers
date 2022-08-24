@@ -1,11 +1,11 @@
 {
   "title": "04-Install SDK & VSCode",
-  "description": "This is an example of how to create a 'training mission' for the VR training environment aboard the Fog Owl!",
-  "questTitle": "Virtual Reality Training",
-  "questDescription": "Example level for VR training. See what's possible!",
+  "description": "Setup our environment so we can write codes",
+  "questTitle": "Setting up our programming environment",
+  "questDescription": "setting up the programming environment",
   "mission_icon": "vscode.webp",
-  "is_mission": false,
-  "priority": 10,
+  "is_mission": true,
+  "priority": 4,
   "backgroundMusic": "hackertheme_104771b",
   "backgroundEffect": {
     "key": "vr",

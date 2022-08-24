@@ -91,19 +91,14 @@
                  "name":"exit",
                  "properties":[
                         {
-                         "name":"levelName",
-                         "type":"string",
-                         "value":"botnet"
-                        }, 
-                        {
                          "name":"mapName",
                          "type":"string",
-                         "value":"owl_corridor"
+                         "value":"fog_owl"
                         }, 
                         {
                          "name":"playerEntryPoint",
                          "type":"string",
-                         "value":"player_entry1"
+                         "value":"player_entry2"
                         }],
                  "rotation":0,
                  "type":"levelChange",
