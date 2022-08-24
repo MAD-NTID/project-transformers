@@ -1,6 +1,6 @@
 {
-  "title": "Example Objective",
-  "description": "This is what an <strong>objective description</strong> looks like!",
+  "title": "Create a file",
+  "description": "Create a file using the command line",
   "validation_fields": [
     {
       "name": "answer1",
