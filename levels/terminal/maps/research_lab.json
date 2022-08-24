@@ -1,4 +1,11 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
  "height":38,
  "infinite":false,
  "layers":[
@@ -93,12 +100,7 @@
                         {
                          "name":"levelName",
                          "type":"string",
-                         "value":"botnet"
-                        }, 
-                        {
-                         "name":"mapName",
-                         "type":"string",
-                         "value":"owl_corridor"
+                         "value":"fog_owl"
                         }, 
                         {
                          "name":"playerEntryPoint",
@@ -435,7 +437,7 @@
  "nextobjectid":310,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.6.0",
+ "tiledversion":"2020.06.10",
  "tileheight":24,
  "tilesets":[
         {
@@ -478,6 +480,6 @@
         }],
  "tilewidth":24,
  "type":"map",
- "version":"1.6",
+ "version":1.4,
  "width":32
 }

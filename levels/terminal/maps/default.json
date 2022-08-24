@@ -1,4 +1,11 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
  "height":32,
  "infinite":false,
  "layers":[
@@ -91,7 +98,7 @@
                  "name":"exit",
                  "properties":[
                         {
-                         "name":"mapName",
+                         "name":"levelName",
                          "type":"string",
                          "value":"fog_owl"
                         }, 
@@ -331,7 +338,7 @@
  "nextobjectid":206,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.8.2",
+ "tiledversion":"2020.06.10",
  "tileheight":24,
  "tilesets":[
         {
@@ -387,6 +394,6 @@
         }],
  "tilewidth":24,
  "type":"map",
- "version":"1.8",
+ "version":1.4,
  "width":36
 }
