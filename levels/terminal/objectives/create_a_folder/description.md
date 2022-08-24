@@ -23,4 +23,23 @@ Git Bash is an application for Microsoft Windows environments which provides an 
 ```
 <a href="https://git-scm.com/downloads"> Click to install git bash</a>
 
-Follow the on screen instruction to complete the installation
+Follow the on-screen instruction to complete the installation. During the installation process, you can accept all the default settings.
+
+After the installation has been completed. Press the windows key and type Git bash, if 
+the app shows up in the search then you have installed it correctly.
+
+## Creating a folder from the command line
+Open Git bash, you can do by:
+- press the Windows key
+- Search for Git bash
+- Click on the app
+
+If you don't see Git bash, make sure you complete the Installation steps above.
+Perform the following steps:
+- cd into the Desktop. If you are not sure where you are, you can use the pwd command which will shows you the current path
+- use the mkdir to create a new folder on the Desktop called programmingCommands
+
+When you have successfully installed git bash and create the required directory, click on hack
+
+
+
