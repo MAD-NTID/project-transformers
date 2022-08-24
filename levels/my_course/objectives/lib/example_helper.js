@@ -49,7 +49,7 @@ function isProfessor(answer){
   /**
    * check if prof is kemoy
    */
-  if(answer.includes("professor kemoy campbell") || answer.includes("professor campbell") || answer.include("prof kemoy campbell") || answer.includes("prof kemoy"))
+  if(answer.includes("professor kemoy campbell") || answer.includes("professor campbell") || answer.includes("prof kemoy campbell") || answer.includes("prof kemoy"))
     return true;
 
   return answer.includes("kemoy campbell") || answer.includes("prof campbell");

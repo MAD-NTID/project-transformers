@@ -12,7 +12,7 @@
       "name": "answer2",
       "type": "textarea",
       "placeholder": "type your answer here",
-      "label": "What are some of the course objectives?"
+      "label": "What are some of the course descriptions?"
     },
     {
       "name": "answer3",
