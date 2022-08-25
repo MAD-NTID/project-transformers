@@ -33,7 +33,16 @@ module.exports = async function (helper) {
       return helper.fail('Please provide the path to the desktop');
     }
 
-    fullPath = path.join(desktop_path,'programmingCommands');
+
+    //git bash fixer
+    if(process.platform==='win32' && desktop_path.toLowerCase().includes('/c/')){
+
+      //disregard the /c
+      fullPath = path.join(desktop_path.substring(2),'programmingCommands');
+    } else {
+      fullPath = path.join(desktop_path,'programmingCommands');
+    }
+
     if(!fs.existsSync(fullPath)){
       return helper.fail('Incorrect-> Please create the folder programmingCommands on the desktop');
     }
