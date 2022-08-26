@@ -23,7 +23,7 @@ module.exports = async function (helper) {
   // We start by getting the user input from the helper
   const { answer1, answer2} = helper.validationFields;
 
-  if(!answer1 || answer1!=='Console.WriteLine')
+  if(!answer1 || (answer1!=='Console.WriteLine' && answer1!=='Console.WriteLine()'))
     return helper.fail('Incorrect answer regarding the first question. Please review the ppt slides');
 
   if(!answer2)
@@ -65,9 +65,10 @@ module.exports = async function (helper) {
     const { exec } = require('child_process');
     let project = fullPath.replace('Program.cs', '');
 
-    let command = 'dotnet run';
+    let command = 'dotnet';
+    //mac have the dotnet executable at a specific location and the symlink doesnt seems to be available when calling through script
     if(process.platform==='darwin')
-      command = '/usr/local/share/dotnet/dotnet'
+      command = '/usr/local/share/dotnet/dotnet';
     const ls = exec(`${command} run --project ${project}`, function (error, stdout, stderr) {
       if (error) {
         console.log(error);

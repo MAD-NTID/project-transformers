@@ -33,19 +33,26 @@ module.exports = async function (helper) {
   if(!fs.existsSync(dir)){
     return helper.fail('Project is not setup correctly. Missing Program.cs?');
   }
-  exec(`dotnet run --project ${answer1}`, (err, stdout, stderr) => {
-    if (err) {
+
+  let command = 'dotnet';
+  //mac have the dotnet executable at a specific location and the symlink doesnt seems to be available when calling through script
+  if(process.platform==='darwin')
+    command = '/usr/local/share/dotnet/dotnet';
+
+  exec(`${command} run --project ${answer1}`, (err, stdout, stderr) => {
+    if (err || stderr) {
       return helper.fail('An error occurred when running your code. Double check your logic');
     }
 
+    // The way we usually write validators is to fail fast, and then if we reach
+    // the end, we know the user got all the answers right!
+    helper.success(`
+    Hooray! You did it!
+  `);
     return true;
   });
 
 
 
-  // The way we usually write validators is to fail fast, and then if we reach
-  // the end, we know the user got all the answers right!
-  helper.success(`
-    Hooray! You did it!
-  `);
+
 };

@@ -25,8 +25,12 @@ module.exports = async function (helper) {
   }
 
   try{
+    let command = 'dotnet';
+    //mac have the dotnet executable at a specific location and the symlink doesnt seems to be available when calling through script
+    if(process.platform==='darwin')
+      command = '/usr/local/share/dotnet/dotnet';
 
-    shellCorrectVersion('dotnet --version');
+    shellCorrectVersion(`${command} --version`);
   } catch (e){
     if (e!=='Wrong version installed'){
       e =  `Incorrect. SDK not installed. Please install the SDK`

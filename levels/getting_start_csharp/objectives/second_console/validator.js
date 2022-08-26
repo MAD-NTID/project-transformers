@@ -50,7 +50,11 @@ module.exports = async function (helper) {
     const { exec } = require('child_process');
     let project = fullPath.replace('Program.cs', '');
 
-    const ls = exec(`dotnet run --project ${project}`, function (error, stdout, stderr) {
+    let command = "dotnet";
+    if(process.platform==='darwin')
+      command = '/usr/local/share/dotnet/dotnet';
+
+    const ls = exec(`${command} run --project ${project}`, function (error, stdout, stderr) {
       if (error) {
         console.log(error.stack);
         return helper.fail('An error occurred while compiling your project')
