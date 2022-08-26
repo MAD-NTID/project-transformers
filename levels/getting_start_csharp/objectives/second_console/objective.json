@@ -1,6 +1,6 @@
 {
-  "title": "Example Objective 2",
-  "description": "This is what an <strong>objective description</strong> looks like!",
+  "title": "Add a second Console.WriteLine",
+  "description": "The second Console.WriteLine should contain your hometown information as describe in the objective",
   "validation_fields": [
     {
       "name": "answer1",
@@ -10,6 +10,6 @@
     }
   ],
   "rewards": {
-    "xp": 700
+    "xp": 750
   }
 }

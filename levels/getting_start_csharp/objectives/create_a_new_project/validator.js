@@ -55,6 +55,12 @@ module.exports = async function (helper) {
     if(!data.includes("Hello Nerds/Geeks!!--- I'm"))
       return helper.fail('Incorrect information in the Console.WriteLine. Check the objective menu again');
 
+    if(data.includes("<first name>"))
+      return helper.fail("replace <first name> with your first name");
+
+    if(data.includes("<last name>"))
+      return helper.fail("replace <last name> with your last name");
+
     //attempt to ensure that the project compiled
     const { exec } = require('child_process');
     let project = fullPath.replace('Program.cs', '');

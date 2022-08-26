@@ -97,7 +97,7 @@
                         {
                          "name":"objectiveName",
                          "type":"string",
-                         "value":"working_on_blank_lines"
+                         "value":"blank_lines"
                         }],
                  "rotation":0,
                  "type":"",

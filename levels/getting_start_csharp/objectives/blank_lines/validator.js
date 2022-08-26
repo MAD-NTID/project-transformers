@@ -6,6 +6,10 @@ Node.js module (since that's what this is!)
 const assert = require("assert");
 const R = require("ramda");
 const { isTwilio } = require("../lib/example_helper");
+const {exec} = require("child_process");
+const path = require('path');
+const fs = require('fs');
+const {forEach} = require("ramda");
 
 /*
 Objective validators export a single function, which is passed a helper
@@ -18,31 +22,59 @@ have completed the challenge as instructed.
 */
 module.exports = async function (helper) {
   // We start by getting the user input from the helper
-  const { answer1, answer2 } = helper.validationFields;
+  const { answer1 } = helper.validationFields;
 
-  // Next, you test the user input - fail fast if they get one of the
-  // answers wrong, or some aspect is wrong! Don't provide too much
-  // negative feedback at once, have the player iterate.
-  if (!answer1 || !isTwilio(answer1)) {
-    return helper.fail(`
-      The answer to the first question is incorrect. The company that
-      makes TwilioQuest starts with a "T" and ends with a "wilio".
-    `);
+  if(!answer1 || (answer1!=='Y') && answer1!=='Y')
+    return helper.fail('Y/N');
+
+
+
+  if(!helper.env.TQ_GETTING_START_PATH) {
+    return helper.fail('You need to complete the create a new project step first!');
   }
 
-  // You can use npm or core Node.js dependencies in your validators!
-  try {
-    assert.strictEqual(R.add(2, 2), Number(answer2));
-  } catch (e) {
-    return helper.fail(`
-      The second answer you provided was either not a number, or not the
-      correct response for "what is 2 + 2".
-    `);
+  let fullPath= helper.env.TQ_GETTING_START_PATH;
+
+  if(!fs.existsSync(fullPath)){
+    return helper.fail('Incorrect-> Cannot find Program.cs in WorkingWithVisualStudioCode');
   }
 
-  // The way we usually write validators is to fail fast, and then if we reach
-  // the end, we know the user got all the answers right!
-  helper.success(`
-    Hooray! You did it!
-  `);
+  fs.readFile(fullPath, 'utf8', (err, data) => {
+    if (err) {
+      return helper.fail(err);
+    }
+
+    if(!data.includes("Console.WriteLine()"))
+      return helper.fail('That is not how you add the space. Try again');
+
+    //attempt to ensure that the project compiled
+    const { exec } = require('child_process');
+    let project = fullPath.replace('Program.cs', '');
+
+    const ls = exec(`dotnet run --project ${project}`, function (error, stdout, stderr) {
+      if (error) {
+        console.log(error.stack);
+        return helper.fail('An error occurred while compiling your project')
+      } else if(stderr){
+        console.log(stderr);
+        return helper.fail('An error occurred while compiling your project')
+      } else {
+        // The way we usually write validators is to fail fast, and then if we reach
+        // the end, we know the user got all the answers right!
+        helper.success(`Hooray! You did it!`);
+      }
+
+      console.log('Child Process STDOUT: ' + stdout);
+      console.log('Child Process STDERR: ' + stderr);
+    });
+
+    ls.on('exit', function (code) {
+      console.log('Child process exited with exit code ' + code);
+    });
+
+
+  });
+
+
+
 };
