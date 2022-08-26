@@ -24,7 +24,7 @@
       "name": "answer4",
       "type": "text",
       "placeholder": "type your answer here",
-      "label": "What command is use to run your program(assume you are not in the project directory and the path is <some path>)?"
+      "label": "What command is use to run your program(assume that your project directory is under PF1/)?"
     }
   ],
   "rewards": {

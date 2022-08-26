@@ -28,7 +28,7 @@ module.exports = async function (helper) {
   if(!answer3 || answer3!=='dotnet run')
     return helper.fail('Incorrect answer on how to run the program from the current directory. Use the help to see the list of available commands');
 
-  if(!answer4 || answer4!=='dotnet run --project <some path>')
+  if(!answer4 || answer4!=='dotnet run --project PF1/MyFirstProject')
     return helper.fail('Incorrect answer on how to run the program when you are not in the directory');
 
   // The way we usually write validators is to fail fast, and then if we reach
