@@ -24,4 +24,4 @@ With discord you can do the followings:
 If you already have a discord account, you can login with that account. Otherwise you will need to create an account.
 
 
-[NMAD-180 Discord](https://discord.gg/PFUpPKWm)
+[NMAD-180 Discord](https://discord.gg/KchqbQKSUV)
