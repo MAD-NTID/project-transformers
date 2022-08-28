@@ -24,7 +24,7 @@ module.exports = async function (helper) {
   // We start by getting the user input from the helper
   const { answer1 } = helper.validationFields;
 
-  if(!answer1 || (answer1!=='Y') && answer1!=='Y')
+  if(!answer1 || (answer1!=='Y') && answer1!=='y')
     return helper.fail('Y/N');
 
 
