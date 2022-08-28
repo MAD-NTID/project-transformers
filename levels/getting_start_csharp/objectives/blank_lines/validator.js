@@ -44,7 +44,7 @@ module.exports = async function (helper) {
       return helper.fail(err);
     }
 
-    if(!data.includes("Console.WriteLine()"))
+    if(!data.includes("Console.WriteLine()") && !data.includes('Console.WriteLine("")'))
       return helper.fail('That is not how you add the space. Try again');
 
     //attempt to ensure that the project compiled
