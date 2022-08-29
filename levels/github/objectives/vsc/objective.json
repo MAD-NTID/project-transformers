@@ -1,0 +1,15 @@
+{
+  "title": "Create a new project and working with VSC",
+  "description": "Learn how to create a new project in a git repository and make modification with VSC",
+  "validation_fields": [
+    {
+      "name": "answer1",
+      "type": "text",
+      "placeholder": "your answer",
+      "label": "Did you complete the steps?"
+    }
+  ],
+  "rewards": {
+    "xp": 500
+  }
+}

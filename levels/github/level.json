@@ -1,11 +1,11 @@
 {
-  "title": "04-Intro to Github",
+  "title": "06 Intro to Github",
   "description": "Help Kuro master Github!",
   "questTitle": "Mastering Github",
   "questDescription": "Mastering Github is essential to passing in this course",
-  "mission_icon": "github.png",
+  "mission_icon": "githubvsc.jpeg",
   "is_mission": false,
-  "priority": 10,
+  "priority": 6,
   "backgroundMusic": "hackertheme_104771b",
   "backgroundEffect": {
     "key": "vr",
@@ -14,5 +14,6 @@
   "flavorTextOverrides": {
     "bookshelf": "There's nothing like a good book."
   },
-  "objectives": ["example_objective", "example_objective2"]
+  "objectives": ["accept_classroom","create_github_account","git_add", "git_check", "git_clone",
+  "git_commit", "git_push", "git_status", "know_thy_git", "recap", "vsc"]
 }
