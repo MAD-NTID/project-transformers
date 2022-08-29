@@ -12,4 +12,4 @@ Console.WriteLine("T-minus 10, 9, 8…");
 Console.WriteLine("Godspeed Octocat!");
 ```
 
-- click on the run tab to make sure your code works without any issue
+- Click on the run tab to make sure your code works without any issue
