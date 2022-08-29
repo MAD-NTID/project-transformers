@@ -4,7 +4,7 @@
   "questTitle": "Mastering Github",
   "questDescription": "Mastering Github is essential to passing in this course",
   "mission_icon": "githubvsc.jpeg",
-  "is_mission": false,
+  "is_mission": true,
   "priority": 6,
   "backgroundMusic": "hackertheme_104771b",
   "backgroundEffect": {
