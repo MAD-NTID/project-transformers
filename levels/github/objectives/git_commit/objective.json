@@ -6,7 +6,7 @@
       "name": "answer1",
       "type": "text",
       "placeholder": "your answer",
-      "label": "did you commit your project?"
+      "label": "Did you commit your project?"
     }
   ],
   "rewards": {

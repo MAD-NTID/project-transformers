@@ -6,7 +6,7 @@
       "name": "answer1",
       "type": "text",
       "placeholder": "your answer",
-      "label": "did you add all your files to be tracking for changes?"
+      "label": "Did you add all of your files to be tracked for changes?"
     }
   ],
   "rewards": {

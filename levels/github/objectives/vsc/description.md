@@ -6,8 +6,8 @@
 - Delete the boring Console.WriteLine("Hello World"); Replace it with the following code
 
 ```C#
-Console.WriteLine("Huston...");
-Console.WriteLine("Sending Octocat, Github's mascot, to space is a go.")
+Console.WriteLine("Houston...");
+Console.WriteLine("Sending Octocat, Github's mascot, to space is a go.");
 Console.WriteLine("T-minus 10, 9, 8…");
 Console.WriteLine("Godspeed Octocat!");
 ```

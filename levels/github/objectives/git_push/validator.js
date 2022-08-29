@@ -26,7 +26,7 @@ module.exports = async function (helper) {
     if(stdout.toLowerCase().includes('your branch is up to date with'))
       return helper.success(`Fly Octocat, fly my pretty, fly!!!!`);
 
-    return helper.fail('You didnt push your changes');
+    return helper.fail("You didn't push your changes");
   }catch (e){
     return helper.fail(e.toString());
   }

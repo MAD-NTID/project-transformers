@@ -21,25 +21,25 @@ module.exports = async function (helper) {
   // We start by getting the user input from the helper
   const { answer1, answer2,answer3,answer4,answer5,answer6,answer7 } = helper.validationFields;
 
-  if(!answer1 || answer1.toLowerCase()!=='git status')
+  if(!answer1 || answer1.toLowerCase() !== 'git status')
     return helper.fail('Incorrect answer for the first question');
 
-  if(!answer2 || !answer2.toLowerCase().includes('git add'))
+  if(!answer2 || answer2.toLowerCase() !== 'git add')
     return helper.fail('Incorrect answer for the second question');
 
-  if(!answer3 || answer3.toLowerCase()!=='git commit')
+  if(!answer3 || answer3.toLowerCase() !== 'git commit')
     return helper.fail('Incorrect answer for the third question');
 
-  if(!answer4 || answer4.toLowerCase()!=='git push')
+  if(!answer4 || answer4.toLowerCase() !== 'git push')
     return helper.fail('Incorrect answer to the fourth question');
 
-  if(!answer5 || answer5.toLowerCase()!=='git pull')
+  if(!answer5 || answer5.toLowerCase() !== 'git pull')
     return helper.fail('Incorrect answer to the fifth question');
 
-  if(!answer6 || answer6.toLowerCase()!=='git clone')
+  if(!answer6 || answer6.toLowerCase() !== 'git clone')
     return helper.fail('incorrect answer to the sixth question');
 
-  if(!answer7 || answer7.toLowerCase()!=='git init')
+  if(!answer7 || answer7.toLowerCase() !== 'git init')
     return helper.fail('Incorrect answer to the seventh question');
 
 

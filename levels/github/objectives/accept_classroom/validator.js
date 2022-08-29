@@ -24,15 +24,10 @@ module.exports = async function (helper) {
     return helper.fail('Create and link your github username first! Skipping much?');
 
   if(!link)
-    helper.fail('please enter the repository link!');
+    helper.fail('Please enter the repository link!');
 
-  if(link!==`https://github.com/MAD-NTID/my-first-github-${username}`)
+  if(link !== `https://github.com/MAD-NTID/my-first-github-${username}` && link !== `https://github.com/MAD-NTID/intro-to-github-group-exercise-${username}`)
     return helper.fail('Incorrect repository link provided. Please copy the link that was created after you accepted the invite and refreshed the page');
-
-
-  if (!username) {
-    return helper.fail(`Please enter the username of your GitHub account!`);
-  }
 
   return helper.success(`Hooray! We are about to go to space!!!`);
 };

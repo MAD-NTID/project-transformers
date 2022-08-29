@@ -6,7 +6,7 @@
       "name": "username",
       "type": "text",
       "placeholder": "your answer",
-      "label": "what is your github username"
+      "label": "What is your github username?"
     }
   ],
   "rewards": {
