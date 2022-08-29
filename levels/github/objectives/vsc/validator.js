@@ -30,7 +30,7 @@ module.exports = async function (helper) {
   let projPath = path.join(clone_path, project);
   console.log(fs.existsSync(projPath));
   if(!fs.existsSync(projPath))
-    return helper.fail(`You didnt created the project ${project}`);
+    return helper.fail(`You didn't created the project ${project}`);
 
   //can we find the Program.cs?
   let programPath = path.join(projPath, 'Program.cs');
@@ -39,7 +39,7 @@ module.exports = async function (helper) {
 
   //matched the console write instructions?
   const data = fs.readFileSync(programPath, 'utf8');
-  if(!data.includes(`Console.WriteLine("Huston...")`) || !data.includes(`Console.WriteLine("Sending Octocat, Github's mascot, to space is a go.")`)||
+  if(!data.includes(`Console.WriteLine("Houston...")`) || !data.includes(`Console.WriteLine("Sending Octocat, Github's mascot, to space is a go.")`)||
   !data.includes(`Console.WriteLine("T-minus 10, 9, 8…")`) || !data.includes(`Console.WriteLine("Godspeed Octocat!")`)) {
     return helper.fail('Please ensure your program match the Console.WriteLine instructions');
   }

@@ -26,7 +26,7 @@ module.exports = async function (helper) {
     if(stdout.toLowerCase().includes('your branch is ahead'))
       return helper.success(`Let's Go!!!`);
 
-    return helper.fail('You didnt commit your changes');
+    return helper.fail("You didn't commit your changes");
   }catch (e){
     return helper.fail(e.toString());
   }

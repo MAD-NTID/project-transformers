@@ -24,9 +24,9 @@ module.exports = async function (helper) {
   try{
     const stdout = await shell.git(`-C ${project} status`);
     console.log(stdout)
-    if(stdout.includes('Untracked files'))
+    if(stdout.includes("git add <file>..."))
       return helper.fail('Incorrect, there are still some files that have not been added to be tracked for changes');
-  }catch (e){
+  }catch (e){wa
     return helper.fail(e.toString());
   }
 
