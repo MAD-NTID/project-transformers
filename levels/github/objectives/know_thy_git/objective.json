@@ -42,7 +42,7 @@
       "name": "answer7",
       "type": "text",
       "placeholder": "your answer",
-      "label": "If you have a project that doesn't have any git tracking on it, what command would allow you to add git tracking?"
+      "label": "If you have a project that is not currently a git repository, what command would allow you to add git repository to the existing project?"
     }
   ],
   "rewards": {
