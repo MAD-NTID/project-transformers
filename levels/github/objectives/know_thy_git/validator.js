@@ -24,7 +24,7 @@ module.exports = async function (helper) {
   if(!answer1 || answer1.toLowerCase() !== 'git status')
     return helper.fail('Incorrect answer for the first question');
 
-  if(!answer2 || answer2.toLowerCase() !== 'git add')
+  if(!answer2 || (answer2.toLowerCase() !== 'git add' && answer2.toLowerCase()!=='git add .' && answer2.toLowerCase()!=='git add --all'))
     return helper.fail('Incorrect answer for the second question');
 
   if(!answer3 || answer3.toLowerCase() !== 'git commit')
