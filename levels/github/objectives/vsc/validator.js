@@ -39,8 +39,8 @@ module.exports = async function (helper) {
 
   //matched the console write instructions?
   const data = fs.readFileSync(programPath, 'utf8');
-  if(!data.includes(`Console.WriteLine("Houston...")`) || !data.includes(`Console.WriteLine("Sending Octocat, Github's mascot, to space is a go.")`)||
-  !data.includes(`Console.WriteLine("T-minus 10, 9, 8…")`) || !data.includes(`Console.WriteLine("Godspeed Octocat!")`)) {
+  if(!data.includes(`Console.WriteLine("Houston...")`) && !data.includes(`Console.WriteLine("Sending Octocat, Github's mascot, to space is a go.")`)&&
+  !data.includes(`Console.WriteLine("T-minus 10, 9, 8…")`) && !data.includes(`Console.WriteLine("Godspeed Octocat!")`)) {
     return helper.fail('Please ensure your program match the Console.WriteLine instructions');
   }
 
