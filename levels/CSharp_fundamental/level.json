@@ -4,7 +4,7 @@
   "questTitle": "Getting used to C# syntax",
   "questDescription": "One step at a time, we will master this together",
   "mission_icon": "csharp.png",
-  "is_mission": false,
+  "is_mission": true,
   "priority": 7,
   "backgroundMusic": "hackertheme_104771b",
   "backgroundEffect": {
