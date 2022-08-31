@@ -13,7 +13,7 @@
       "name": "answer2",
       "type": "textarea",
       "placeholder": "type your answer here",
-      "label": "string name = \"Kuro\";<br/> int yearInCollege = 1; <br/> int yearsToGraduate = 4; Use the Console.WriteLine with replacement concept to display <br/>Kuro is a 1 student. He will be graduating in 4 years. <br/>(Everything should be display on the same line)"
+      "label": "string name = \"Kuro\";<br/> int yearInCollege = 1; <br/> int yearsToGraduate = 4; Use the Console.WriteLine with replacement concept to display <br/>Kuro is a 1 year(s) student. He will be graduating in 4 years. <br/>(Everything should be display on the same line)"
     }
 
   ],

@@ -20,11 +20,11 @@ module.exports = async function (helper) {
   // We start by getting the user input from the helper
   const { answer1, answer2} = helper.validationFields;
 
-  let concatRegex = /Console.WriteLine\(\s*firstName\s*\+\s*lastName\);/;
+  let concatRegex = /Console.WriteLine\(\s*firstName\s*\+\s*\" \"\s*\+\s*lastName\);/
   if(!answer1 || !answer1.match(concatRegex))
-    return helper.fail('That is not correct. Please try again');
+    return helper.fail('That is not the correct answer for the first question. Please try again');
 
-  let replacementRegex = /Console.WriteLine\("\{0} is a \{1} year\(s\) student. He will be graduating in \{2} years.",\s*name,\s*yearInCollege,\s*yearsToGraduate\);/;
+  let replacementRegex = /Console.WriteLine\(\"\{0} is a \{1} year\(s\) student. He will be graduating in \{2}\",\s*name,\s*yearInCollege,\s*yearsToGraduate\);/;
 
   if(!answer2 || !answer2.match(replacementRegex))
     return helper.fail(`Incorrect. This might take some practices. Don't give up. Try again.`)
