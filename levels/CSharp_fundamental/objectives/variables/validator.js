@@ -18,23 +18,32 @@ have completed the challenge as instructed.
 */
 module.exports = async function (helper) {
   // We start by getting the user input from the helper
-  const { answer1, answer2, answer3 } = helper.validationFields;
+  const { answer1, answer2, answer3,answer4,answer5 } = helper.validationFields;
 
-  if(!answer1 || !answer1.includes("a complete programming instruction")
-      && !answer1.includes("programming instruction")
-      && !answer1.includes(' actions that a program') && !answer1.includes('instruction'))
-    return helper.fail("Incorrect answer regarding statements");
-
+  if(!answer1 || (!answer1.includes('storage location') && !answer1.includes('named container')))
+    return helper.fail('incorrect answer for the first question');
 
   if(!answer2 || answer2!=='true')
-    return helper.fail("Incorrect answer regarding comment spanning");
+    return helper.fail('Incorrect answer for the second question');
 
-  if(!answer3 || (answer3!=='semi-colon' && answer3!==';'))
-    return helper.fail("Incorrect answer regarding how statements are ended");
+
+  let ageRegex = /int[\s+]age[\s+]=\s*\d+;/;
+  if(!answer3 || !answer3.match(ageRegex))
+    return helper.fail('Incorrect answer for the third question');
+
+  let balanceRegex = /double[\s+]balance[\s+]=\s*250.00;/;
+  if(!answer4 || !answer4.match(balanceRegex))
+    return helper.fail('Incorrect answer provided for the fourth question');
+
+  let nameRegex = /string[\s+]name[\s+]=[\s+]"[a-zA-Z]+ [a-zA-Z]+";/
+  if(!answer5 || !answer5.match(nameRegex))
+    return helper.fail("Incorrect answer provided for the fifth question");
+
+
 
   // The way we usually write validators is to fail fast, and then if we reach
   // the end, we know the user got all the answers right!
   helper.success(`
-    Hooray! That was really one ways to make a statement!
+    Hooray! You are doing awesome!
   `);
 };

@@ -1,8 +1,8 @@
 {
-  "title": "VR Mission Template",
-  "description": "This is an example of how to create a 'training mission' for the VR training environment aboard the Fog Owl!",
-  "questTitle": "Virtual Reality Training",
-  "questDescription": "Example level for VR training. See what's possible!",
+  "title": "07- Mastering the C# Fundamentals",
+  "description": "Mastering the Fundamentals",
+  "questTitle": "Getting used to C# syntax",
+  "questDescription": "One step at a time, we will master this together",
   "mission_icon": "csharp.png",
   "is_mission": false,
   "priority": 7,

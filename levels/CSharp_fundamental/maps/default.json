@@ -1,11 +1,4 @@
 { "compressionlevel":-1,
- "editorsettings":
-    {
-     "export":
-        {
-         "target":"."
-        }
-    },
  "height":42,
  "infinite":false,
  "layers":[
@@ -550,7 +543,7 @@
                         {
                          "name":"objectiveName",
                          "type":"string",
-                         "value":"numeric_types"
+                         "value":"booleans"
                         }],
                  "rotation":0,
                  "type":"",
@@ -568,7 +561,7 @@
                         {
                          "name":"objectiveName",
                          "type":"string",
-                         "value":"true_false"
+                         "value":"numerics"
                         }],
                  "rotation":0,
                  "type":"",
@@ -591,37 +584,14 @@
                         {
                          "name":"objectiveName",
                          "type":"string",
-                         "value":"strings"
+                         "value":"joining"
                         }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":24,
-                 "x":531.916449086162,
-                 "y":553.146076679951
-                }, 
-                {
-                 "gid":10032,
-                 "height":24,
-                 "id":237,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"hackable",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"objectiveName",
-                         "type":"string",
-                         "value":"characters"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":24,
-                 "x":334.296550776419,
-                 "y":619.635014429023
+                 "x":349.295190056234,
+                 "y":671.040813522056
                 }, 
                 {
                  "gid":10054,
@@ -847,7 +817,7 @@
  "nextobjectid":242,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"2020.06.10",
+ "tiledversion":"1.8.2",
  "tileheight":24,
  "tilesets":[
         {
@@ -881,6 +851,6 @@
         }],
  "tilewidth":24,
  "type":"map",
- "version":1.4,
+ "version":"1.8",
  "width":33
 }

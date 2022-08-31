@@ -18,23 +18,21 @@ have completed the challenge as instructed.
 */
 module.exports = async function (helper) {
   // We start by getting the user input from the helper
-  const { answer1, answer2, answer3 } = helper.validationFields;
+  const { answer1, answer2} = helper.validationFields;
 
-  if(!answer1 || !answer1.includes("a complete programming instruction")
-      && !answer1.includes("programming instruction")
-      && !answer1.includes(' actions that a program') && !answer1.includes('instruction'))
-    return helper.fail("Incorrect answer regarding statements");
+  let concatRegex = /Console.WriteLine\(\s*firstName\s*\+\s*lastName\);/;
+  if(!answer1 || !answer1.match(concatRegex))
+    return helper.fail('That is not correct. Please try again');
 
+  let replacementRegex = /Console.WriteLine\("\{0} is a \{1} year\(s\) student. He will be graduating in \{2} years.",\s*name,\s*yearInCollege,\s*yearsToGraduate\);/;
 
-  if(!answer2 || answer2!=='true')
-    return helper.fail("Incorrect answer regarding comment spanning");
+  if(!answer2 || !answer2.match(replacementRegex))
+    return helper.fail(`Incorrect. This might take some practices. Don't give up. Try again.`)
 
-  if(!answer3 || (answer3!=='semi-colon' && answer3!==';'))
-    return helper.fail("Incorrect answer regarding how statements are ended");
 
   // The way we usually write validators is to fail fast, and then if we reach
   // the end, we know the user got all the answers right!
   helper.success(`
-    Hooray! That was really one ways to make a statement!
+    Hooray! You did it!
   `);
 };
