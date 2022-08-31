@@ -602,7 +602,7 @@
                         {
                          "name":"hackable",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }, 
                         {
                          "name":"interactable",
@@ -618,8 +618,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":168.691493747423,
-                 "y":855.422839082039
+                 "x":419.506767225235,
+                 "y":905.12356147626
                 }],
          "opacity":1,
          "type":"objectgroup",
