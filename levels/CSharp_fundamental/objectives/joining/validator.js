@@ -24,7 +24,7 @@ module.exports = async function (helper) {
   if(!answer1 || !answer1.match(concatRegex))
     return helper.fail('That is not the correct answer for the first question. Please try again');
 
-  let replacementRegex = /Console.WriteLine\(\"\{0} is a \{1} year\(s\) student. He will be graduating in \{2}\",\s*name,\s*yearInCollege,\s*yearsToGraduate\);/;
+  let replacementRegex = /Console.WriteLine\(\"\{0} is a \{1} year\(s\) student. He will be graduating in \{2} years\",\s*name,\s*yearInCollege,\s*yearsToGraduate\);/;
 
   if(!answer2 || !answer2.match(replacementRegex))
     return helper.fail(`Incorrect. This might take some practices. Don't give up. Try again.`)
