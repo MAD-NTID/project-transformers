@@ -49,7 +49,7 @@ module.exports = async function (helper) {
   let answer = answer2.split(',');
 
   //we need at least 4 matches to pass (intersection of both arrays)
-  if(answer.filter(ans=> types.includes(ans)).length!==4)
+  if(answer.filter(ans=> types.includes(ans.trim())).length!==4)
     return helper.fail("One or more of the types listed is incorrect");
 
 

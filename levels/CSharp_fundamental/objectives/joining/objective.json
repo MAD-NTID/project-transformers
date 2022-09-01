@@ -6,7 +6,7 @@
       "name": "answer1",
       "type": "textarea",
       "placeholder": "type your answer here",
-      "label": "string firstName = \"Johnny\"; <br/> string lastName = \"Deep\"; <br/> Write the C# code to display the concatenate of the two variables above. Do not create an additional variable"
+      "label": "string firstName = \"Johnny\"; <br/> string lastName = \"Deep\"; <br/> Write the C# code to display the concatenate of the two variables above so that it shows as Johnny Deep. Do not create an additional variable"
     },
 
     {
