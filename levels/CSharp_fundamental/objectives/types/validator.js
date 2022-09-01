@@ -27,7 +27,8 @@ module.exports = async function (helper) {
       "the type of data the object support",
       "the size and type of variable value",
       "the kind of the variable value",
-      "the kind of value"
+      "the kind of value",
+      "kind of object"
 
   ]
 
