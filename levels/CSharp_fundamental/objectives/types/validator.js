@@ -47,7 +47,11 @@ module.exports = async function (helper) {
       "string", "object","dynamic"
   ];
 
-  let answer = answer2.split(',');
+  //    obtain a clean array of types without spaces
+  let answer = answer2.replace(/\s*,\s*/g, ',').split(',');
+
+  //    ensure that we have unique values by using ES6 new Set
+  answer = Array.from(new Set(answer));
 
   //we need at least 4 matches to pass (intersection of both arrays)
   if(answer.filter(ans=> types.includes(ans.trim())).length!==4)
