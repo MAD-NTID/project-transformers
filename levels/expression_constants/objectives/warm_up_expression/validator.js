@@ -18,26 +18,16 @@ have completed the challenge as instructed.
 */
 module.exports = async function (helper) {
   // We start by getting the user input from the helper
-  const { answer1, answer2, answer3,answer4,answer5 } = helper.validationFields;
+  const { answer1, answer2, answer3} = helper.validationFields;
 
-  if(!answer1 || answer1!=='2')
-    helper.fail('Incorrect answer for the first question');
+  if(!answer1 || !answer1.includes('boolean'))
+    return helper.fail('Incorrect answer for question #1');
 
-  if(!answer2 || answer2.includes('//'))
-    helper.fail('That is not how you write a single line comment. All I can say is... Try again');
+  if(!answer2 || answer2!=='string')
+    return helper.fail('Incorrect answer for question #2');
 
-  if(!answer3 || (!answer3.includes('/*') && !answer3.includes('*/')) )
-    return helper.fail('mmmhmm... That is not how we write a block comment. Give it another shot?');
-
-  if(!answer4 || answer4!=='true')
-    helper.fail('Comments are ignored by the computer');
-
-  if(!answer5 || (!answer5.includes('human') && !answer5.includes('developers') && !answer5.includes('software engineers') && !answer5.includes('programmer') && !answer5.includes('document')
-  && !answer5.includes('team') && !answer5.includes('classmate') && !answer5.includes('readers') && !answer5.includes('reviewers'))
-  )
-    return helper.fail('Incorrect answer to the 5th question');
-
-
+  if(!answer3 || answer3!=='false')
+    return helper.fail('Incorrect answer for question #3');
 
   // The way we usually write validators is to fail fast, and then if we reach
   // the end, we know the user got all the answers right!
