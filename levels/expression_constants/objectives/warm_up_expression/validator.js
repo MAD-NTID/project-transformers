@@ -20,13 +20,13 @@ module.exports = async function (helper) {
   // We start by getting the user input from the helper
   const { answer1, answer2, answer3} = helper.validationFields;
 
-  if(!answer1 || !answer1.includes('boolean'))
+  if(!answer1 || !answer1.toLowerCase().includes('boolean'))
     return helper.fail('Incorrect answer for question #1');
 
-  if(!answer2 || answer2!=='string')
+  if(!answer2 || !answer2.toLowerCase().includes('string'))
     return helper.fail('Incorrect answer for question #2');
 
-  if(!answer3 || answer3!=='false')
+  if(!answer3 || answer3.toLowerCase().includes('false'))
     return helper.fail('Incorrect answer for question #3');
 
   // The way we usually write validators is to fail fast, and then if we reach
