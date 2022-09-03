@@ -26,7 +26,7 @@ module.exports = async function (helper) {
   if(!answer2 || !answer2.toLowerCase().includes('string'))
     return helper.fail('Incorrect answer for question #2');
 
-  if(!answer3 || answer3.toLowerCase().includes('false'))
+  if(!answer3 || !answer3.toLowerCase().includes('false'))
     return helper.fail('Incorrect answer for question #3');
 
   // The way we usually write validators is to fail fast, and then if we reach
