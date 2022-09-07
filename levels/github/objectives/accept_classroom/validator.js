@@ -26,7 +26,9 @@ module.exports = async function (helper) {
   if(!link)
     helper.fail('Please enter the repository link!');
 
-  if(link !== `https://github.com/MAD-NTID/my-first-github-${username}`)
+
+
+  if(link.replace('.git', '') !== `https://github.com/MAD-NTID/my-first-github-${username}`)
     return helper.fail('Incorrect repository link provided. Please copy the link that was created after you accepted the invite and refreshed the page');
 
   return helper.success(`Hooray! We are about to go to space!!!`);
