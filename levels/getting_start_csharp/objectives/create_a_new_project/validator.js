@@ -23,7 +23,7 @@ module.exports = async function (helper) {
   // We start by getting the user input from the helper
   const { answer1, answer2} = helper.validationFields;
 
-  if(!answer1 || (answer1!=='Console.WriteLine' && answer1!=='Console.WriteLine()'))
+  if(!answer1 || (answer1!=='Console.WriteLine' && answer1!=='Console.WriteLine()' && answer1 !== 'Console.WriteLine();'))
     return helper.fail('Incorrect answer regarding the first question. Please review the ppt slides');
 
   if(!answer2)
