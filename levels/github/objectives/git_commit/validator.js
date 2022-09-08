@@ -24,7 +24,7 @@ module.exports = async function (helper) {
   try{
     const stdout = await shell.git(`-C ${project} status`);
     console.log(stdout);
-    if(stdout.toLowerCase().includes('your branch is ahead'))
+    if(stdout.toLowerCase().includes('your branch is ahead') || stdout.toLowerCase().includes('nothing to commit, working tree clean'))
       return helper.success(`Let's Go!!!`);
 
     return helper.fail("You didn't commit your changes");
