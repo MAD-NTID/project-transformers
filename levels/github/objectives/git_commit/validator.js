@@ -23,6 +23,7 @@ module.exports = async function (helper) {
     return helper.fail('You are missing a step, complete the create a new project and working with VSC exercise first');
   try{
     const stdout = await shell.git(`-C ${project} status`);
+    console.log(stdout);
     if(stdout.toLowerCase().includes('your branch is ahead'))
       return helper.success(`Let's Go!!!`);
 
