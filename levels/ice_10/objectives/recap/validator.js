@@ -28,7 +28,7 @@ module.exports = async function (helper) {
   if(!answer3 || !["bool", "boolean"].includes(answer3.toLowerCase()))
     return helper.fail("Incorrect answer for question #3");
 
-  if(!answer4 || !answer4.includes("int.parse("))
+  if(!answer4 || !answer4.includes("int.Parse"))
     return helper.fail("Incorrect answer for question #4");
 
   if(!answer5 || answer5.toLowerCase()!=='true')
