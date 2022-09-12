@@ -26,7 +26,8 @@ module.exports = async function (helper) {
       "multiple statements",
       "many statements",
       "related statements",
-      "statements grouped together"
+      "statements grouped together",
+      "group statements"
   ];
 
   if(!answer1)
