@@ -60,6 +60,7 @@ function isFolderExist(path)
     if(!path)
         throw "Please provide the path!";
     path = cleanPath(path);
+    console.log(path);
     if(!fs.existsSync(path))
         throw 'Invalid path! the path is not a folder and doesnt exist!';
 }
