@@ -20,7 +20,7 @@ module.exports = async function (helper) {
   // We start by getting the user input from the helper
   const { answer1, answer2, answer3,  answer4, answer5, answer6 } = helper.validationFields;
 
-  if(!answer1 || answer1!=='Console.ReadLine()')
+  if(!answer1 || (answer1!=='Console.ReadLine()' && answer1!=='Console.ReadLine();'))
     return helper.fail('Incorrect answer for question #1');
   if(!answer2 || answer2.toLowerCase()!=='console')
     return helper.fail("Incorrect answer for question #2");
