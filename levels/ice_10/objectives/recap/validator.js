@@ -34,7 +34,7 @@ module.exports = async function (helper) {
   if(!answer5 || answer5.toLowerCase()!=='true')
     return helper.fail("Incorrect answer for question #5");
 
-  if(!answer6 || (answer6.toLowerCase()!=='false' && answer6.toLowerCase()!=='not true'))
+  if(!answer6 || (answer6.toLowerCase()!=='false' && answer6.toLowerCase()!=='not true' && answer6.toLowerCase()!=='!true'))
     return helper.fail("Incorrect answer for question #6");
 
   helper.success("Hooray!!! You are ready to face new challenges!");
