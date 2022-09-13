@@ -7,6 +7,7 @@ const assert = require("assert");
 const R = require("ramda");
 const { isTwilio } = require("../lib/example_helper");
 const {isFolderExist, dotnet} = require("../../../github/objectives/lib/utility");
+const path = require("path");
 
 /*
 Objective validators export a single function, which is passed a helper
@@ -22,7 +23,8 @@ module.exports = async function (helper) {
   const { answer1} = helper.validationFields;
   let projectName = 'PasswordDecision'
   let parentFolder = helper.env.TQ_GITHUB_CLONE_PATH_ICE_10_CLASSROOM;
-  let project = `${parentFolder}/${projectName}`;
+
+  let project = path.resolve(parentFolder, projectName);
 
 
   //attempt to compile the project
