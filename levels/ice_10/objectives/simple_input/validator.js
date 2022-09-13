@@ -30,7 +30,7 @@ module.exports = async function (helper) {
   try{
     //does the project exist?
     isFolderExist(project);
-    await dotnet(`run --project ${project}`); //compile
+    await dotnet(`build ${project}`); //compile
 
   }catch(err){
     return helper.fail(err);
