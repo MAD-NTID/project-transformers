@@ -65,11 +65,48 @@ function isFolderExist(path)
         throw 'Invalid path! the path is not a folder and doesnt exist!';
 }
 
+async function test_inputs(inputStream, childProcess){
+    return new Promise((resolve, reject)=>{
+        let outputs = '';
+        let stderr = '';
+
+        //collect the stdouts
+        childProcess.stdout.on('data', (data)=>{
+            outputs+= data.toString();
+        });
+
+        //collect the stderr
+        childProcess.stderr.on('data', (data)=>{
+            stderr+=data.toString();
+        });
+
+        //the program terminates so we will need to return back to the promise
+        childProcess.on('close', ()=>{
+            if(stderr)
+            {
+                console.log(outputs);
+                reject(new Error(stderr));
+            }
+                
+            else{
+                console.log(outputs);
+                resolve(outputs);
+            }
+                
+        });
+
+        //pipe all inputs to the child process
+        inputStream.pipe(childProcess.stdin);
+
+    });
+}
+
 module.exports = {
     dotnet,
     git,
     checkGithubUsername,
     isFolderExist,
-    dotnetExecutionBinary
+    dotnetExecutionBinary,
+    test_inputs
 }
 

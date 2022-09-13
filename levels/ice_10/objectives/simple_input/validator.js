@@ -8,6 +8,7 @@ const R = require("ramda");
 const { isTwilio } = require("../lib/example_helper");
 const {isFolderExist, dotnet, dotnetExecutionBinary} = require("../../../github/objectives/lib/utility");
 const {spawn} = require("child_process");
+const path = require('path');
 
 /*
 Objective validators export a single function, which is passed a helper
@@ -23,7 +24,8 @@ module.exports = async function (helper) {
   const { answer1} = helper.validationFields;
   let projectName = 'SimpleInputs'
   let parentFolder = helper.env.TQ_GITHUB_CLONE_PATH_ICE_10_CLASSROOM;
-  let project = `${parentFolder}/${projectName}`;
+  let project = path.resolve(parentFolder,projectName);
+  console.log(project);
 
 
   //attempt to compile the project
