@@ -4,7 +4,7 @@
   "questTitle": "If Else Training and try parse input handling",
   "questDescription": "Decision and error handling is of the most fundamental component of programming. In this lesson, you will master the basics of decisions",
   "mission_icon": "tryparse.png",
-  "is_mission": true,
+  "is_mission": false,
   "priority": 11,
   "backgroundMusic": "hackertheme_104771b",
   "backgroundEffect": {
