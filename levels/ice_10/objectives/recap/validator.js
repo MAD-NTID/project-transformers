@@ -5,6 +5,7 @@ Node.js module (since that's what this is!)
 */
 const assert = require("assert");
 const R = require("ramda");
+const { log } = require("../../../github/objectives/lib/utility");
 const { isTwilio } = require("../lib/example_helper");
 
 /*
@@ -20,6 +21,7 @@ module.exports = async function (helper) {
   // We start by getting the user input from the helper
   const { answer1, answer2, answer3,  answer4, answer5, answer6 } = helper.validationFields;
 
+  log("test")
   if(!answer1 || (answer1!=='Console.ReadLine()' && answer1!=='Console.ReadLine();'))
     return helper.fail('Incorrect answer for question #1');
   if(!answer2 || answer2.toLowerCase()!=='console')

@@ -6,9 +6,10 @@ Node.js module (since that's what this is!)
 const assert = require("assert");
 const R = require("ramda");
 const { isTwilio } = require("../lib/example_helper");
-const {isFolderExist, dotnet, dotnetExecutionBinary} = require("../../../github/objectives/lib/utility");
+const {isFolderExist, dotnet, dotnetExecutionBinary, test_inputs, log} = require("../../../github/objectives/lib/utility");
 const {spawn} = require("child_process");
 const path = require('path');
+const fs = require('fs');
 
 /*
 Objective validators export a single function, which is passed a helper
@@ -33,6 +34,19 @@ module.exports = async function (helper) {
     //does the project exist?
     isFolderExist(project);
     await dotnet(`build ${project}`); //compile
+
+
+    try{
+      const flieStream = fs.createReadStream(path.resolve(__dirname, "./inputs.txt"));
+      console.log(await test_inputs('dotnet run --project '+ project));
+    } catch(e) {
+      log(e.message, e.stack);
+    }
+    
+
+    
+
+
 
   }catch(err){
     return helper.fail(err);

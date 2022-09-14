@@ -2,6 +2,25 @@ const util = require('util');
 const {default: axios} = require("axios");
 const exec = util.promisify(require('child_process').exec);
 const fs = require('fs');
+const path = require('path');
+
+
+async function log(content, trace){
+    let logFile = path.resolve(__dirname, '../../../../logs/log.txt');
+
+    let log = new Date().toLocaleString('en-US', { hour: 'numeric', hour12: true }) + ' - ' + content + '\n';
+    if(trace)
+        log+='stack trace:' + trace + '\n';
+    
+    await fs.appendFile(logFile, log, function(err) {
+        if(err) 
+            throw err;
+        
+        console.log('log saved!');
+        
+    });
+    //await fs.appendFile()
+}
 
 async function dotnet(command)
 {
@@ -65,41 +84,62 @@ function isFolderExist(path)
         throw 'Invalid path! the path is not a folder and doesnt exist!';
 }
 
-async function test_inputs(inputStream, childProcess){
-    return new Promise((resolve, reject)=>{
-        let outputs = '';
-        let stderr = '';
-
-        //collect the stdouts
-        childProcess.stdout.on('data', (data)=>{
-            outputs+= data.toString();
-        });
-
-        //collect the stderr
-        childProcess.stderr.on('data', (data)=>{
-            stderr+=data.toString();
-        });
-
-        //the program terminates so we will need to return back to the promise
-        childProcess.on('close', ()=>{
-            if(stderr)
-            {
-                console.log(outputs);
-                reject(new Error(stderr));
-            }
-                
-            else{
-                console.log(outputs);
-                resolve(outputs);
-            }
-                
-        });
-
-        //pipe all inputs to the child process
-        inputStream.pipe(childProcess.stdin);
-
+async function test_inputs(cmd) {
+    console.log("About to execute this: ", cmd);
+    var child = exec(cmd);
+    return new Promise((resolve, reject) => {
+      child.stdout.on('data', (data) => {
+        console.log(`${data}`);
+        process.stdin.pipe(child.stdin);
+      });
+  
+      child.on('close', function (err, data) {
+        if (err) {
+          console.log("Error executing cmd: ", err);
+          reject(err);
+        } else {
+          //   console.log("data:", data)
+          resolve(data);
+        }
+      });
     });
-}
+  }
+
+// async function test_inputs(inputStream, childProcess){
+//     return new Promise((resolve, reject)=>{
+//         let outputs = '';
+//         let stderr = '';
+
+//         //collect the stdouts
+//         childProcess.stdout.on('data', (data)=>{
+//             outputs+= data.toString();
+//         });
+
+//         //collect the stderr
+//         childProcess.stderr.on('data', (data)=>{
+//             stderr+=data.toString();
+//         });
+
+//         //the program terminates so we will need to return back to the promise
+//         childProcess.on('close', ()=>{
+//             if(stderr)
+//             {
+//                 console.log(outputs);
+//                 reject(new Error(stderr));
+//             }
+                
+//             else{
+//                 console.log(outputs);
+//                 resolve(outputs);
+//             }
+                
+//         });
+
+//         //pipe all inputs to the child process
+//         inputStream.pipe(childProcess.stdin);
+
+//     });
+// }
 
 module.exports = {
     dotnet,
@@ -107,6 +147,7 @@ module.exports = {
     checkGithubUsername,
     isFolderExist,
     dotnetExecutionBinary,
-    test_inputs
+    test_inputs,
+    log
 }
 
