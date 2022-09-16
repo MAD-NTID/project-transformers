@@ -6,11 +6,8 @@ Node.js module (since that's what this is!)
 const assert = require("assert");
 const R = require("ramda");
 const { isTwilio } = require("../lib/example_helper");
-const {isFolderExist, dotnet, dotnetExecutionBinary} = require("../../../github/objectives/lib/utility");
-const {spawn} = require("child_process");
-const path = require('path');
-const fs = require('fs')
-
+const {isFolderExist, dotnet} = require("../../../github/objectives/lib/utility");
+const path = require("path");
 /*
 Objective validators export a single function, which is passed a helper
 object. The helper object contains information passed in from the game UI,
@@ -22,48 +19,23 @@ have completed the challenge as instructed.
 */
 module.exports = async function (helper) {
   // We start by getting the user input from the helper
-  const { answer1} = helper.validationFields;
-  let projectName = 'SimpleInputs'
-  let parentFolder = helper.env.TQ_GITHUB_CLONE_PATH_ICE_11_CLASSROOM;
-  let project = path.resolve(parentFolder,projectName);
-  let fullPath = path.resolve(project,'Program.cs');
-  console.log(project);
+  const { answer1 } = helper.validationFields;
+
+  let projectName = 'MiniCalculator'
+  let parentFolder = helper.env.TQ_GITHUB_CLONE_PATH_ICE_10_CLASSROOM;
+  let project =  path.resolve(parentFolder, projectName);
 
 
   //attempt to compile the project
   try{
     //does the project exist?
     isFolderExist(project);
-    fs.readFile(fullPath, 'utf8', (err, data) => {
-      if(err)
-        throw new Error(err);
-      if(!data.includes("\"$"))
-        throw new Error("You must use string interploation technique!");
-      
-    });
-
     await dotnet(`build ${project}`); //compile
 
   }catch(err){
     return helper.fail(err);
   }
 
-  // //interact with the program
-  // const spawn = require('child_process').spawn;
-  // const child = spawn(`${dotnetExecutionBinary()} run --project ${project}`);
-  //
-  //
-  // child.stdout.on('data', (data) => {
-  //   helper.fail(data);
-  //   console.log(`stdout: "${data}"`);
-  // });
-  //
-  // child.stdin.write("Kemoy Campbell\n");
-  // //child.stdin.end(); // EOF
-  //
-  // child.on('close', (code) => {
-  //   console.log(`Child process exited with code ${code}.`);
-  // });
 
 
   // The way we usually write validators is to fail fast, and then if we reach

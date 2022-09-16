@@ -9,7 +9,6 @@ const { isTwilio } = require("../lib/example_helper");
 const {isFolderExist, dotnet, dotnetExecutionBinary} = require("../../../github/objectives/lib/utility");
 const {spawn} = require("child_process");
 const path = require('path');
-const fs = require('fs')
 
 /*
 Objective validators export a single function, which is passed a helper
@@ -24,9 +23,8 @@ module.exports = async function (helper) {
   // We start by getting the user input from the helper
   const { answer1} = helper.validationFields;
   let projectName = 'SimpleInputs'
-  let parentFolder = helper.env.TQ_GITHUB_CLONE_PATH_ICE_11_CLASSROOM;
+  let parentFolder = helper.env.TQ_GITHUB_CLONE_PATH_ICE_10_CLASSROOM;
   let project = path.resolve(parentFolder,projectName);
-  let fullPath = path.resolve(project,'Program.cs');
   console.log(project);
 
 
@@ -34,14 +32,6 @@ module.exports = async function (helper) {
   try{
     //does the project exist?
     isFolderExist(project);
-    fs.readFile(fullPath, 'utf8', (err, data) => {
-      if(err)
-        throw new Error(err);
-      if(!data.includes("\"$"))
-        throw new Error("You must use string interploation technique!");
-      
-    });
-
     await dotnet(`build ${project}`); //compile
 
   }catch(err){

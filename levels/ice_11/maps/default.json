@@ -211,6 +211,29 @@
                  "width":24,
                  "x":303.266597867217,
                  "y":352.329893360853
+                }, 
+                {
+                 "gid":10011,
+                 "height":48,
+                 "id":141,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"hackable",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"objectiveName",
+                         "type":"string",
+                         "value":"recap"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":79.9804,
+                 "x":14.6090432060544,
+                 "y":409.271413828689
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -244,7 +267,7 @@
          "y":0
         }],
  "nextlayerid":51,
- "nextobjectid":140,
+ "nextobjectid":142,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.8.2",
