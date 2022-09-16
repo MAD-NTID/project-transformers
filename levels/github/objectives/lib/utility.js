@@ -3,6 +3,17 @@ const {default: axios} = require("axios");
 const exec = util.promisify(require('child_process').exec);
 const fs = require('fs');
 
+async function readFileAsync(filename){
+    return new Promise((resolve, reject)=>{
+      fs.readFile(filename, 'utf-8', (err, data)=>{
+        if(err)
+          reject(new Error(err));
+          
+        resolve(data);
+      })
+    })
+  }
+
 async function dotnet(command)
 {
     let dotnet = 'dotnet ';
@@ -107,6 +118,7 @@ module.exports = {
     checkGithubUsername,
     isFolderExist,
     dotnetExecutionBinary,
-    test_inputs
+    test_inputs,
+    readFileAsync
 }
 

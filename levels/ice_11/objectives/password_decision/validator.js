@@ -6,7 +6,7 @@ Node.js module (since that's what this is!)
 const assert = require("assert");
 const R = require("ramda");
 const { isTwilio } = require("../lib/example_helper");
-const {isFolderExist, dotnet} = require("../../../github/objectives/lib/utility");
+const {isFolderExist, dotnet, readFileAsync} = require("../../../github/objectives/lib/utility");
 const path = require("path");
 
 /*
@@ -31,6 +31,9 @@ module.exports = async function (helper) {
   try{
     //does the project exist?
     isFolderExist(project);
+    let data = await readFileAsync(path.resolve(project,"Program.cs"));
+    if(data.includes("int.TryParse"))
+      return helper.fail("Are you forgetting a try parse?")
     await dotnet(`build ${project}`); //compile
 
   }catch(err){
