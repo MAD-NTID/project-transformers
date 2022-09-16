@@ -32,7 +32,7 @@ module.exports = async function (helper) {
     //does the project exist?
     isFolderExist(project);
     let data = await readFileAsync(path.resolve(project,"Program.cs"));
-    if(data.includes("int.TryParse"))
+    if(!data.includes("int.TryParse"))
       return helper.fail("Are you forgetting a try parse?")
     await dotnet(`build ${project}`); //compile
 
