@@ -20,6 +20,22 @@ The helper object also has "success" and "fail" callback functions - use
 these functions to let the game (and the player) know whether or not they 
 have completed the challenge as instructed.
 */
+
+async function readFileAsync(filename){
+  return new Promise((resolve, reject)=>{
+    fs.readFile(filename, 'utf-8', (err, data)=>{
+      if(err)
+        reject(new Error(err));
+      else
+        {
+          console.log(data);
+          if(!data.includes("$"))
+            reject(new Error("You must use string interpolation technique!"));
+          resolve(data);
+        }
+    })
+  })
+}
 module.exports = async function (helper) {
   // We start by getting the user input from the helper
   const { answer1} = helper.validationFields;
@@ -34,29 +50,9 @@ module.exports = async function (helper) {
   try{
     //does the project exist?
     isFolderExist(project);
-    let success = false;
-    let error = '';
-    fs.readFile(fullPath, 'utf8', (err, data) => {
-      if(err){
-        success = false;
-        error = err;
-      }
-        
-      else if(!data.includes("\"$")){
-        error = "You must use string interploation technique!";
-        success = false;
-
-      } else {
-        success = true;
-      }
-      
-    });
-
-    if(!success){
-      return helper.fail(error);
-    } else {
-      await dotnet(`build ${project}`); //compile
-    }
+    await readFileAsync(fullPath);
+    await dotnet(`build ${project}`); //compile
+  
     //console.log("got here?")
     //
 
