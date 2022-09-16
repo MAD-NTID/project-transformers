@@ -34,15 +34,31 @@ module.exports = async function (helper) {
   try{
     //does the project exist?
     isFolderExist(project);
+    let success = false;
+    let error = '';
     fs.readFile(fullPath, 'utf8', (err, data) => {
-      if(err)
-        throw new Error(err);
-      if(!data.includes("\"$"))
-        throw new Error("You must use string interploation technique!");
+      if(err){
+        success = false;
+        error = err;
+      }
+        
+      else if(!data.includes("\"$")){
+        error = "You must use string interploation technique!";
+        success = false;
+
+      } else {
+        success = true;
+      }
       
     });
 
-    await dotnet(`build ${project}`); //compile
+    if(!success){
+      return helper.fail(error);
+    } else {
+      await dotnet(`build ${project}`); //compile
+    }
+    //console.log("got here?")
+    //
 
   }catch(err){
     return helper.fail(err);
