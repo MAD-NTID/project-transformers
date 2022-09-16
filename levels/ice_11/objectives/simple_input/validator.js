@@ -31,6 +31,8 @@ async function readFileAsync(filename){
           console.log(data);
           if(!data.includes("$"))
             reject(new Error("You must use string interpolation technique!"));
+          if(!data.includes('int.TryParse'))
+            reject(new Error("Are you forgetting TryParse?"));
           resolve(data);
         }
     })
