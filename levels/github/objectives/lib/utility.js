@@ -2,6 +2,32 @@ const util = require('util');
 const {default: axios} = require("axios");
 const exec = util.promisify(require('child_process').exec);
 const fs = require('fs');
+const procexec = require('child_process').exec;
+
+const path = requite('path');
+
+async function log(content, trace){
+    let logFile = path.resolve(__dirname, '../../../../logs/log.txt');
+
+    let log = new Date().toLocaleString('en-US', { hour: 'numeric', hour12: true }) + ' - ' + content + '\n';
+    if(trace)
+        log+='stack trace:' + trace + '\n';
+
+    await fs.appendFile(logFile, log, function(err) {
+        if(err)
+            throw err;
+
+        console.log('log saved!');
+
+    });
+    //await fs.appendFile()
+}
+
+async function getInputsFromFile(filename){
+    let inputPath = path.resolve(__dirname, '../../../../inputs/'+ filename);
+    const result = await readFileAsync(inputPath);
+    return result.split("\n");
+}
 
 async function readFileAsync(filename){
     return new Promise((resolve, reject)=>{
@@ -27,7 +53,11 @@ async function dotnet(command)
 }
 
 function dotnetExecutionBinary(){
-    return process.platform==='darwin' ? '/usr/local/share/dotnet/dotnet ' : 'dotnet ';
+    let execution = 'dotnet';
+    if(process.platform === 'darwin')
+        execution = '/usr/local/share/dotnet/dotnet'
+
+    return execution;
 }
 
 async function git(command)
@@ -76,40 +106,62 @@ function isFolderExist(path)
         throw 'Invalid path! the path is not a folder and doesnt exist!';
 }
 
-async function test_inputs(inputStream, childProcess){
-    return new Promise((resolve, reject)=>{
-        let outputs = '';
-        let stderr = '';
 
-        //collect the stdouts
-        childProcess.stdout.on('data', (data)=>{
-            outputs+= data.toString();
-        });
-
-        //collect the stderr
-        childProcess.stderr.on('data', (data)=>{
-            stderr+=data.toString();
-        });
-
-        //the program terminates so we will need to return back to the promise
-        childProcess.on('close', ()=>{
-            if(stderr)
-            {
-                console.log(outputs);
-                reject(new Error(stderr));
-            }
-                
-            else{
-                console.log(outputs);
-                resolve(outputs);
-            }
-                
-        });
-
-        //pipe all inputs to the child process
-        inputStream.pipe(childProcess.stdin);
-
+async function wait(seconds) 
+{
+    let ms = seconds * 1000;
+    return new Promise((_, reject) => {
+       setTimeout(() => reject(new Error('input testing timeout!')), ms);
     });
+}
+
+async function child_process_inputs(cmd, inputs)
+{
+    console.log("running the command: ", cmd);
+    return new Promise((resolve, reject)=>{
+        let contents = '';
+        let errors = '';
+        let position = 0;
+
+        let child = procexec(cmd);
+
+        child.stdout.on('data', (data)=>{
+            contents+=data;
+            //any remaining inputs from our tests?
+            if(position < inputs.length)
+            {
+                child.stdin.write(inputs[position]);
+                position++;
+                child.stdout.pipe(child.stdin);
+            }
+            
+        });
+
+        child.stderr.on('data', (data)=>{
+            errors+=data
+        });
+
+        child.on('exit', ()=>{
+            if(errors)
+                reject(new Error(errors));
+            else
+                resolve(contents);
+        })
+     
+    })
+}
+
+async function test_inputs(timeout_in_second, cmd, inputs)
+{
+    try{
+        return await Promise.race([wait(timeout_in_second),child_process_inputs(cmd, inputs)]);
+    }catch(err) {
+        if(err.message.includes('timeout')) {
+            throw 'Your program timed out. You might have more inputs than required or your program hangs';
+        }
+
+        throw err;
+    }
 }
 
 module.exports = {
@@ -119,6 +171,10 @@ module.exports = {
     isFolderExist,
     dotnetExecutionBinary,
     test_inputs,
-    readFileAsync
+    readFileAsync,
+    wait,
+    child_process_inputs,
+    log,
+    getInputsFromFile
 }
 

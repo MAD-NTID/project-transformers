@@ -6,7 +6,7 @@ Node.js module (since that's what this is!)
 const assert = require("assert");
 const R = require("ramda");
 const { isTwilio } = require("../lib/example_helper");
-const {isFolderExist, dotnet, dotnetExecutionBinary} = require("../../../github/objectives/lib/utility");
+const {isFolderExist, dotnet, dotnetExecutionBinary, getInputsFromFile, test_inputs, log} = require("../../../github/objectives/lib/utility");
 const {spawn} = require("child_process");
 const path = require('path');
 const fs = require('fs')
@@ -37,6 +37,9 @@ async function readFileAsync(filename){
             reject(new Error("Are you forgetting TryParse?"));
           if(data.match(ifRegex)) 
             reject(new Error('You cannot use if statements!'));
+
+          if(!data.includes('switch') || !data.includes('case') || !data.includes('break'))
+            reject(new Error('YOu must use switch with case(s) and break!'))
           resolve(data);
         }
     })
@@ -58,11 +61,20 @@ module.exports = async function (helper) {
     isFolderExist(project);
     await readFileAsync(fullPath);
     await dotnet(`build ${project}`); //compile
+
+    //testing the inputs
+    let inputs = getInputsFromFile('SimpleInputs/validInput.txt');
+    const res = await test_inputs(5, `${dotnetExecutionBinary()} --run project ${project}`, inputs);
+
+    if(!res.includes(inputs[0]) || !res.includes(inputs[1]) || !res.includes(60+5))
+      return helper.fail("Your program did not pass the input test!");
+
   
     //console.log("got here?")
     //
 
   }catch(err){
+    await log(err);
     return helper.fail(err);
   }
 
