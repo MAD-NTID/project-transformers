@@ -6,7 +6,7 @@ Node.js module (since that's what this is!)
 const assert = require("assert");
 const R = require("ramda");
 const { isTwilio } = require("../lib/example_helper");
-const {isFolderExist, dotnet, readFileAsync} = require("../../../github/objectives/lib/utility");
+const {isFolderExist, dotnet, readFileAsync, getInputsFromFile, test_inputs, dotnetExecutionBinary, log} = require("../../../github/objectives/lib/utility");
 const path = require("path");
 /*
 Objective validators export a single function, which is passed a helper
@@ -41,11 +41,31 @@ module.exports = async function (helper) {
         return helper.fail("Are you forgetting something? hint: "+ acceptables[i]);
     }
 
-    if(data.match(ifRegex)) 
-      reject(new Error('You cannot use if statements!'));
+    if(!data.includes("switch") || !data.includes("case"))
+      return helper.fail("You must implement switch");
+
+    if(!data.includes("when"))
+      return helper.fail("You must use when in this exercise");
+
+    if(!data.match(ifRegex))
+      return helper.fail('You must implement an if statement(s) in this exercise')
 
      
     await dotnet(`build ${project}`); //compile
+
+    //testing the inputs
+    let inputs = await getInputsFromFile('MiniCalculator/addInput.txt');
+    let res = await test_inputs(5, `${dotnetExecutionBinary()} run --project ${project}`, inputs);
+    await log(res);
+
+    if(!res.replace(/ /g,"").includes("MINICALCULATORVERSION3.0"))
+      return helper.fail("You must show MINI CALCULATOR VERSION 3.0 as the title of the calculator!");
+
+    if(!res.includes("24") || !res.includes(inputs[1]) || !res.includes(inputs[2]))
+      return helper.fail("Your program didnt passed the input test for add!");
+
+
+    return helper.fail("place holder");
 
   }catch(err){
     return helper.fail(err);

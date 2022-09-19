@@ -6,7 +6,7 @@ Node.js module (since that's what this is!)
 const assert = require("assert");
 const R = require("ramda");
 const { isTwilio } = require("../lib/example_helper");
-const {isFolderExist, dotnet, readFileAsync} = require("../../../github/objectives/lib/utility");
+const {isFolderExist, dotnet, readFileAsync, getInputsFromFile, test_inputs, dotnetExecutionBinary, log} = require("../../../github/objectives/lib/utility");
 const path = require("path");
 
 /*
@@ -34,14 +34,39 @@ module.exports = async function (helper) {
     let data = await readFileAsync(path.resolve(project,"Program.cs"));
     if(!data.includes("int.TryParse"))
       return helper.fail("Are you forgetting a try parse?");
+
+    if(!data.includes('switch') || !data.includes('case'))
+      return helper.fail("You must use switch in this program!");
     
-    if(data.match(ifRegex)) 
-      reject(new Error('You cannot use if statements!'));
-    
-    let ifRegex = /\s*if\s*\(/gi;
+    if(!data.match(ifRegex))
+      return helper.fail('You are missing if statement(s)');
+
     await dotnet(`build ${project}`); //compile
 
+    //testing the inputs
+    let inputs = await getInputsFromFile('PasswordDecision/validInputs.txt');
+    let res = await test_inputs(5, `${dotnetExecutionBinary()} run --project ${project}`, inputs);
+
+    if(!res.includes('Welcome Tony Stark!'))
+      return helper.fail("Your program must print Welcome Tony Stark! if the user enter the correct username and password");
+
+    //testing bad data
+    inputs = await getInputsFromFile('PasswordDecision/badInputs.txt');
+    res = await test_inputs(5, `${dotnetExecutionBinary()} run --project ${project}`, inputs);
+    //await log(res);
+
+    //testing invalid username or password
+    inputs = await getInputsFromFile('PasswordDecision/invalidUsernameOrPassword.txt');
+    res = await test_inputs(5, `${dotnetExecutionBinary()} run --project ${project}`, inputs);
+    await log(res);
+    if(!res.includes("Incorrect username or password!"))
+      return helper.fail("You must show Incorrect username or password! if the user didnt enter the correct password or username");
+
+
+
   }catch(err){
+    if(err.message.toLowerCase().includes('input string was not in a correct format'))
+      return helper.fail("Your program didn't pass the test case when a bad input was entered for the password. Hint: use try parse to verify before attempting to convert");
     return helper.fail(err);
   }
 

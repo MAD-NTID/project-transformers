@@ -25,7 +25,15 @@ async function log(content, trace){
 }
 
 async function getInputsFromFile(filename){
-    let inputPath = path.resolve(__dirname, '../../../../inputs/'+ filename);
+    let inputPath = path.resolve(__dirname, '../../../../inputs');
+
+    if(!filename.includes("/"))
+        inputPath = path.resolve(inputPath, filename);
+    else{
+        let items = filename.split("/");
+        for(let i = 0;i < items.length; i++)
+            inputPath = path.resolve(inputPath,items[i]);
+    }
     const result = await readFileAsync(inputPath);
     return result.split("\n");
 }
@@ -118,7 +126,6 @@ async function wait(seconds)
 
 async function child_process_inputs(child, inputs)
 {
-    console.log("running the command: ", cmd);
     return new Promise((resolve, reject)=>{
         let contents = '';
         let errors = '';
@@ -127,11 +134,11 @@ async function child_process_inputs(child, inputs)
 
 
         child.stdout.on('data', (data)=>{
-            contents+=data;
+            contents+='stdout:'+data;
             //any remaining inputs from our tests?
             if(position < inputs.length)
             {
-                child.stdin.write(inputs[position]);
+                child.stdin.write(inputs[position] + '\n');
                 position++;
                 child.stdout.pipe(child.stdin);
             }

@@ -22,7 +22,11 @@ You need to perform verification on all numeric entered numeric values. In other
 you need to check that all digits entered are digits. If they are not digit(s), handle the errors
 appropriately.
 
-In additional, you are requires to use switch instead of if statements
+You must implement the following techniques:
+- TryParse
+- Switch
+- When
+- If
 ```
 
 Steps:
@@ -39,7 +43,7 @@ Eg. ```const ADD = 1;```
 4. Display the following menu on screen to the user
 ```
 =======================================
-MINI CALCULATOR VERSION 1.0
+MINI CALCULATOR VERSION 3.0
 =======================================
 
 1. Add two numbers
@@ -66,7 +70,7 @@ MINI CALCULATOR VERSION 1.0
 
 ```
 =======================================
-MINI CALCULATOR VERSION 1.0
+MINI CALCULATOR VERSION 3.0
 =======================================
 
 1. Add two numbers

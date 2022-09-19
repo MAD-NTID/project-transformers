@@ -3,10 +3,10 @@
 Note: The password has changed from ICE-10
 ```
 
-In this exercise, you will be working with inputs, constants, try parse and if statement to build a simple
+In this exercise, you will be working with inputs, constants, try parse,switch and if statement to build a simple
 user logon system. In fact, you will be building the logon screen that is used by Tony Stark!
 
-***Note, you must use try parse along with case when in this exercise***
+***Note, you must use try parse along with switch and if statement in this exercise.***
 
 Steps:
 1. cd into the classroom repository that you cloned
@@ -17,7 +17,7 @@ Steps:
 ```
 ========================================
 ||        TONY STARK                  ||
-||        ENTERPRISE		              ||
+||         ENTERPRISE                 ||
 ||======================================
 
 Please Login

@@ -4,7 +4,7 @@
   "questTitle": "Switch and try parse input handling",
   "questDescription": "Decision and error handling is of the most fundamental component of programming. In this lesson, you will master the basics of decisions using switch statements",
   "mission_icon": "switch.jpg",
-  "is_mission": false,
+  "is_mission": true,
   "priority": 12,
   "backgroundMusic": "hackertheme_104771b",
   "backgroundEffect": {
