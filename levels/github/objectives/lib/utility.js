@@ -3,8 +3,9 @@ const {default: axios} = require("axios");
 const exec = util.promisify(require('child_process').exec);
 const fs = require('fs');
 const procexec = require('child_process').exec;
+const kill  = require('tree-kill');
 
-const path = requite('path');
+const path = require('path');
 
 async function log(content, trace){
     let logFile = path.resolve(__dirname, '../../../../logs/log.txt');
@@ -115,7 +116,7 @@ async function wait(seconds)
     });
 }
 
-async function child_process_inputs(cmd, inputs)
+async function child_process_inputs(child, inputs)
 {
     console.log("running the command: ", cmd);
     return new Promise((resolve, reject)=>{
@@ -123,7 +124,7 @@ async function child_process_inputs(cmd, inputs)
         let errors = '';
         let position = 0;
 
-        let child = procexec(cmd);
+
 
         child.stdout.on('data', (data)=>{
             contents+=data;
@@ -153,13 +154,16 @@ async function child_process_inputs(cmd, inputs)
 
 async function test_inputs(timeout_in_second, cmd, inputs)
 {
+    let child = procexec(cmd);
     try{
-        return await Promise.race([wait(timeout_in_second),child_process_inputs(cmd, inputs)]);
+
+        return await Promise.race([wait(timeout_in_second),child_process_inputs(child, inputs)]);
     }catch(err) {
         if(err.message.includes('timeout')) {
             throw 'Your program timed out. You might have more inputs than required or your program hangs';
         }
 
+        kill(child.pid);
         throw err;
     }
 }

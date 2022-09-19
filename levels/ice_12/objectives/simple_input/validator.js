@@ -64,7 +64,7 @@ module.exports = async function (helper) {
 
     //testing the inputs
     let inputs = getInputsFromFile('SimpleInputs/validInput.txt');
-    const res = await test_inputs(5, `${dotnetExecutionBinary()} --run project ${project}`, inputs);
+    const res = await test_inputs(10, `${dotnetExecutionBinary()} run --project ${project}`, inputs);
 
     if(!res.includes(inputs[0]) || !res.includes(inputs[1]) || !res.includes(60+5))
       return helper.fail("Your program did not pass the input test!");
