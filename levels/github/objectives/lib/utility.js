@@ -4,6 +4,7 @@ const exec = util.promisify(require('child_process').exec);
 const fs = require('fs');
 const procexec = require('child_process').exec;
 const kill  = require('tree-kill');
+const os = require("os");
 
 const path = require('path');
 
@@ -134,12 +135,12 @@ async function child_process_inputs(child, inputs)
 
 
         child.stdout.on('data', (data)=>{
-            contents+=data;
+            contents+='stdout:'+data;
             //any remaining inputs from our tests?
             if(position < inputs.length)
             {
-                console.log(inputs[position]);
-                child.stdin.write(inputs[position] + '\n');
+                child.stdin.write(inputs[position]);
+                child.stdin.write(os.EOL);
                 position++;
                 child.stdout.pipe(child.stdin);
             }
@@ -147,9 +148,6 @@ async function child_process_inputs(child, inputs)
         });
 
         child.stderr.on('data', (data)=>{
-            if (data.code == "EPIPE") {
-                process.exit(0);
-            }
             errors+=data
         });
 
@@ -159,7 +157,6 @@ async function child_process_inputs(child, inputs)
             else
                 resolve(contents);
         })
-
      
     })
 }
