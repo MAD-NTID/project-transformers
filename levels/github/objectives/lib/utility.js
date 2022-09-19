@@ -134,10 +134,11 @@ async function child_process_inputs(child, inputs)
 
 
         child.stdout.on('data', (data)=>{
-            contents+='stdout:'+data;
+            contents+=data;
             //any remaining inputs from our tests?
             if(position < inputs.length)
             {
+                console.log(inputs[position]);
                 child.stdin.write(inputs[position] + '\n');
                 position++;
                 child.stdout.pipe(child.stdin);
@@ -146,6 +147,9 @@ async function child_process_inputs(child, inputs)
         });
 
         child.stderr.on('data', (data)=>{
+            if (data.code == "EPIPE") {
+                process.exit(0);
+            }
             errors+=data
         });
 
@@ -155,6 +159,7 @@ async function child_process_inputs(child, inputs)
             else
                 resolve(contents);
         })
+
      
     })
 }

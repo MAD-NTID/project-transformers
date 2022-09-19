@@ -54,18 +54,24 @@ module.exports = async function (helper) {
     await dotnet(`build ${project}`); //compile
 
     //testing the inputs
-    let inputs = await getInputsFromFile('MiniCalculator/addInput.txt');
-    let res = await test_inputs(5, `${dotnetExecutionBinary()} run --project ${project}`, inputs);
-    await log(res);
+    // let inputs = await getInputsFromFile('MiniCalculator/addInput.txt');
+    // console.log(inputs);
+    // let res = await test_inputs(5, `${dotnetExecutionBinary()} run --project ${project}`, inputs);
+    // await log(res);
 
-    if(!res.replace(/ /g,"").includes("MINICALCULATORVERSION3.0"))
-      return helper.fail("You must show MINI CALCULATOR VERSION 3.0 as the title of the calculator!");
+    // if(!res.replace(/ /g,"").includes("MINICALCULATORVERSION3.0"))
+    //   return helper.fail("You must show MINI CALCULATOR VERSION 3.0 as the title of the calculator!");
 
-    if(!res.includes("24") || !res.includes(inputs[1]) || !res.includes(inputs[2]))
-      return helper.fail("Your program didnt passed the input test for add!");
+    // let num1 = Number(inputs[1]);
+    // let num2 = Number(inputs[2]);
+
+    // console.log(res);
+
+    // if(!res.includes(num1+num2) || !res.includes(num1) || !res.includes(num2))
+    //   return helper.fail("Your program didnt passed the input test for add!");
 
 
-    return helper.fail("place holder");
+    // return helper.fail("place holder");
 
   }catch(err){
     return helper.fail(err);
