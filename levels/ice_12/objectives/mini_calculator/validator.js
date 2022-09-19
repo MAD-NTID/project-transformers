@@ -6,7 +6,7 @@ Node.js module (since that's what this is!)
 const assert = require("assert");
 const R = require("ramda");
 const { isTwilio } = require("../lib/example_helper");
-const {isFolderExist, dotnet} = require("../../../github/objectives/lib/utility");
+const {isFolderExist, dotnet, readFileAsync} = require("../../../github/objectives/lib/utility");
 const path = require("path");
 /*
 Objective validators export a single function, which is passed a helper
@@ -22,14 +22,29 @@ module.exports = async function (helper) {
   const { answer1 } = helper.validationFields;
 
   let projectName = 'MiniCalculator'
-  let parentFolder = helper.env.TQ_GITHUB_CLONE_PATH_ICE_10_CLASSROOM;
+  let parentFolder = helper.env.TQ_GITHUB_CLONE_PATH_ICE_12_CLASSROOM;
   let project =  path.resolve(parentFolder, projectName);
+  let ifRegex = /\s*if\s*\(/gi;
 
 
   //attempt to compile the project
   try{
     //does the project exist?
     isFolderExist(project);
+    let data = await readFileAsync(path.resolve(project,"Program.cs"));
+    if(!data.includes("int.TryParse") && !data.includes("double.TryParse"))
+      return helper.fail("are you forgetting TryParse?");
+    let acceptables = ["const", "ADD", "SUB", "MUL", "DIV"];
+
+    for(let i = 0; i< acceptables.length; i++){
+      if(!data.includes(acceptables[i]))
+        return helper.fail("Are you forgetting something? hint: "+ acceptables[i]);
+    }
+
+    if(data.match(ifRegex)) 
+      reject(new Error('You cannot use if statements!'));
+
+     
     await dotnet(`build ${project}`); //compile
 
   }catch(err){

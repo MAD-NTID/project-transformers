@@ -1,11 +1,11 @@
 {
-  "title": "10- Decision",
-  "description": "Working with Decisions",
-  "questTitle": "If Else Training",
-  "questDescription": "Decision is of the most fundamental component of programming. In this lesson, you will master the basics of decisions",
-  "mission_icon": "ifelse.png",
+  "title": "12- Decision,int error handling and Switch statements",
+  "description": "Working with Decisions,error handling and Switch statements",
+  "questTitle": "Switch and try parse input handling",
+  "questDescription": "Decision and error handling is of the most fundamental component of programming. In this lesson, you will master the basics of decisions using switch statements",
+  "mission_icon": "switch.jpg",
   "is_mission": false,
-  "priority": 10,
+  "priority": 12,
   "backgroundMusic": "hackertheme_104771b",
   "backgroundEffect": {
     "key": "vr",
@@ -14,5 +14,5 @@
   "flavorTextOverrides": {
     "bookshelf": "There's nothing like a good book."
   },
-  "objectives": ["recap", "logical","block","another_name","clone_the_classroom","instructor_sign_off", "mini_calculator","password_decision","simple_input"]
+  "objectives": ["clone_the_classroom","instructor_sign_off", "mini_calculator","password_decision","simple_input"]
 }

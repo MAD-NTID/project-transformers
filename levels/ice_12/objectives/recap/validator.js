@@ -20,21 +20,22 @@ module.exports = async function (helper) {
   // We start by getting the user input from the helper
   const { answer1, answer2, answer3,  answer4, answer5, answer6 } = helper.validationFields;
 
-  if(!answer1 || (answer1!=='Console.ReadLine()' && answer1!=='Console.ReadLine();'))
+  if(!answer1 || answer1!=='switch')
     return helper.fail('Incorrect answer for question #1');
-  if(!answer2 || answer2.toLowerCase()!=='console')
+  if(!answer2 || answer2!=='case')
     return helper.fail("Incorrect answer for question #2");
 
-  if(!answer3 || !["bool", "boolean"].includes(answer3.toLowerCase()))
+  if(!answer3 || answer3!=='break')
     return helper.fail("Incorrect answer for question #3");
 
-  if(!answer4 || !answer4.includes("int.Parse"))
+  if(!answer4 || answer4!=='default')
     return helper.fail("Incorrect answer for question #4");
 
-  if(!answer5 || answer5.toLowerCase()!=='true')
+
+  if(!answer5 || answer5!=='when')
     return helper.fail("Incorrect answer for question #5");
 
-  if(!answer6 || (answer6.toLowerCase()!=='false' && answer6.toLowerCase()!=='not true' && answer6.toLowerCase()!=='!true'))
+  if(!answer6 || (!answer6.toLowerCase().includes('falling through') && !answer6.toLowerCase().includes('fall through')))
     return helper.fail("Incorrect answer for question #6");
 
   helper.success("Hooray!!! You are ready to face new challenges!");

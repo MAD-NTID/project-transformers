@@ -1,14 +1,14 @@
 # Coding Assignments
 
 ICE Goals
-In this coding exercise, there are three parts that covers the topic of console inputs, variables, decisions,mathematical expressions and implicit/explicit conversions.
+In this coding exercise, there are three parts that covers the topic of console inputs, variables, decisions,mathematical expressions, int error handling and implicit/explicit conversions.
 
 Before proceeding with the ICE, create a new repository from GitHub Classroom that is specifically designed to store this exercise.
 
 ## Steps:
 1. Open the terminal
 2. cd into your prefer locations, eg. Desktop, PF1 or any other location where you prefer to store this assignment
-3. [Accept the Github Classroom Invitation](https://classroom.github.com/a/ky8WRcst)
+3. [Accept the Github Classroom Invitation](https://classroom.github.com/a/w3Swb20C)
 4. Wait a for a 10 seconds after you clicked on accepted the classroom
 5. Refresh
 6. Copy and the link that appears on screen after you refreshed

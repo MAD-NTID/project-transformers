@@ -6,40 +6,41 @@
       "name": "answer1",
       "type": "text",
       "placeholder": "type your answer here",
-      "label": "1. What C# statement is used to get the input from the user?"
+      "label": "\\#1. What C\\# statement allows the program to selects one matching value from a set of alternatives?"
     },
     {
       "name": "answer2",
       "type": "text",
       "placeholder": "type your answer here",
-      "label": "2. We can interact with the keyboard and the computer's display through the _____________"
+      "label": "\\#2. The matching value(s) are created using what C\\# keyword?"
     },
     {
       "name": "answer3",
       "type": "text",
       "placeholder": "type your answer here",
-      "label": "3. What data type are if/else statements?"
+      "label": "\\#3. What keyword is used to terminate a statement block for the keyword answered in #2?"
     },
     {
       "name": "answer4",
       "type": "text",
       "placeholder": "type your answer here",
-      "label": "4. What is the method to convert a string to an int numeric data type? (method only, no parameters required)"
+      "label": "\\#4. In an if statement, a 'else' is used as a catch all block for anything that doesnt match the given conditions. What is the equivalent in switch?"
     },
     {
       "name": "answer5",
       "type": "text",
       "placeholder": "type your answer here",
-      "label": "5. An if statement block is executed if, and only if the condition is ____________"
+      "label": "\\#5. We can perform logical operators such as and, or using what keyword inside case?"
     },
     {
       "name": "answer6",
       "type": "text",
       "placeholder": "type your answer here",
-      "label": "6. The else statement block is executed only if the \"if\" statement block is ________________"
+      "label": "\\#6.We can combine case statements to execute the same code in either match. This behaves the same as OR statments. What is this technique called?"
     }
+    
   ],
   "rewards": {
-    "xp": 150
+    "xp": 250
   }
 }

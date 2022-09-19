@@ -1,7 +1,7 @@
 # Part 3 - Mini Calculator
 
 This exercise is designed to challenge you. You will be working on your knowledge of 
-using user inputs, explicit conversion, decision, int.parse and other concepts that
+using user inputs, numeric input handling, explicit conversion, decision, int.parse and other concepts that
 you have learned in this course so far to build a mini calculator that can support
 the following operations:
  - Add
@@ -14,6 +14,16 @@ Console.ReadLine(). You will use If to decide which of the operation mentioned
 above the user would like to do. In additional, you will need to verify that the user
 select the option 1-4. Lastly but not the least, if the user select divide, you want to 
 make sure that the second number is not a 0 as you cannot mathematically divide by a 0.
+
+```
+Notes:
+
+You need to perform verification on all numeric entered numeric values. In other words,
+you need to check that all digits entered are digits. If they are not digit(s), handle the errors
+appropriately.
+
+In additional, you are requires to use switch instead of if statements
+```
 
 Steps:
 1. cd into the Github Classroom that you cloned
@@ -49,7 +59,8 @@ MINI CALCULATOR VERSION 1.0
 - Perform the math with the two numbers based on the selected choice
 - Display the result back to the user
 
-*** Remember you will need to display an error if the user tried to divide the denominator by 0
+***Remember you will need to display an error if the user tried to divide the denominator by 0***
+***Remember to handle all potential errors that may occurred when handling digit(s) input(s)***
 
 **ScreenShot examples:**
 

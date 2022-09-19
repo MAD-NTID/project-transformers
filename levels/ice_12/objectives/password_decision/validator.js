@@ -6,7 +6,7 @@ Node.js module (since that's what this is!)
 const assert = require("assert");
 const R = require("ramda");
 const { isTwilio } = require("../lib/example_helper");
-const {isFolderExist, dotnet} = require("../../../github/objectives/lib/utility");
+const {isFolderExist, dotnet, readFileAsync} = require("../../../github/objectives/lib/utility");
 const path = require("path");
 
 /*
@@ -22,15 +22,23 @@ module.exports = async function (helper) {
   // We start by getting the user input from the helper
   const { answer1} = helper.validationFields;
   let projectName = 'PasswordDecision'
-  let parentFolder = helper.env.TQ_GITHUB_CLONE_PATH_ICE_10_CLASSROOM;
+  let parentFolder = helper.env.TQ_GITHUB_CLONE_PATH_ICE_12_CLASSROOM;
 
   let project = path.resolve(parentFolder, projectName);
-
+  let ifRegex = /\s*if\s*\(/gi;
 
   //attempt to compile the project
   try{
     //does the project exist?
     isFolderExist(project);
+    let data = await readFileAsync(path.resolve(project,"Program.cs"));
+    if(!data.includes("int.TryParse"))
+      return helper.fail("Are you forgetting a try parse?");
+    
+    if(data.match(ifRegex)) 
+      reject(new Error('You cannot use if statements!'));
+    
+    let ifRegex = /\s*if\s*\(/gi;
     await dotnet(`build ${project}`); //compile
 
   }catch(err){

@@ -18,31 +18,37 @@ have completed the challenge as instructed.
 */
 module.exports = async function (helper) {
   // We start by getting the user input from the helper
-  const { answer1, answer2, answer3, answer4,answer5,answer6 } = helper.validationFields;
+  const { answer1, answer2, answer3,  answer4, answer5, answer6 } = helper.validationFields;
 
-  if(!answer1 || answer1.toLowerCase().replace("operator", "")!=='and')
-    return helper.fail("Incorrect answer for question #1");
-
-  if(!answer2 || answer2.toLowerCase().replace("operator", "")!=='or')
+  if(!answer1 || answer!=='true')
+    return helper.fail('Incorrect answer for question #1');
+  if(!answer2 || answer2!=='2')
     return helper.fail("Incorrect answer for question #2");
 
-  if(!answer3 || answer3!=='==')
-    return helper.fail('Incorrect answer for question #3');
+  if(!answer3 || !["bool", "boolean"].includes(answer3.toLowerCase()))
+    return helper.fail("Incorrect answer for question #3");
 
-  if(!answer4 || answer4!=='!=')
+  if(!answer4 || !answer4.toLowerCase().includes("true"))
     return helper.fail("Incorrect answer for question #4");
 
-  if(!answer5 || answer5!=='!')
-    return helper.fail('Incorrect answer for question #5');
+  let acceptable = ['string interpolation', 'interpolation'];
+  if(!answer5)
+    return helper.fail("Please answer question #5");
+
+  let match = false;
+  for(let i = 0; i< acceptable.length; i++) {
+    if(answer5.toLowerCase().includes(acceptable[i])){
+      match = true;
+      break;
+    }
+  }
+
+  if(!match)
+    return helper.fail("Incorrect answer for question #5");
 
   if(!answer6 || answer6.toLowerCase()!=='true')
     return helper.fail("Incorrect answer for question #6");
 
+  helper.success("Hooray!!! You are ready to face new challenges!");
 
-
-  // The way we usually write validators is to fail fast, and then if we reach
-  // the end, we know the user got all the answers right!
-  helper.success(`
-    Hooray! You did it!
-  `);
 };
