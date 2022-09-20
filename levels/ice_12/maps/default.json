@@ -1,4 +1,11 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
  "height":32,
  "infinite":false,
  "layers":[
@@ -234,6 +241,18 @@
                  "width":79.9804,
                  "x":14.6090432060544,
                  "y":409.271413828689
+                }, 
+                {
+                 "height":0,
+                 "id":142,
+                 "name":"player_entry_dev",
+                 "point":true,
+                 "rotation":0,
+                 "type":"player",
+                 "visible":true,
+                 "width":0,
+                 "x":405.913660555884,
+                 "y":381.502069781195
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -267,10 +286,10 @@
          "y":0
         }],
  "nextlayerid":51,
- "nextobjectid":142,
+ "nextobjectid":143,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.8.2",
+ "tiledversion":"2020.06.10",
  "tileheight":24,
  "tilesets":[
         {
@@ -300,6 +319,6 @@
         }],
  "tilewidth":24,
  "type":"map",
- "version":"1.8",
+ "version":1.4,
  "width":32
 }

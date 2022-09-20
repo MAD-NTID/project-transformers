@@ -130,18 +130,18 @@ async function child_process_inputs(child, inputs)
     return new Promise((resolve, reject)=>{
         let contents = '';
         let errors = '';
+        let index = 0;
 
 
 
-
+        
         child.stdout.on('data', (data)=>{
-            contents+='stdout:'+data;
+            contents+=data;
             //any remaining inputs from our tests?
-            if(inputs.length > 0)
+            if(index < inputs.length)
             {
-                child.stdin.write(inputs[0] + '\n');
-                child.stdout.pipe(child.stdin);
-                inputs.shift();//remove the first element from the array
+                child.stdin.write(inputs[index] + '\n');
+                index++;
             }
             
         });
@@ -151,11 +151,14 @@ async function child_process_inputs(child, inputs)
         });
 
         child.on('exit', ()=>{
+            process.stdin.destroy();
             if(errors)
                 reject(new Error(errors));
             else
                 resolve(contents);
         })
+
+        
      
     })
 }
@@ -176,6 +179,19 @@ async function test_inputs(timeout_in_second, cmd, inputs)
     }
 }
 
+async function run_test_cases_from_file(command, timeout_in_second,input_test_cases_file)
+{
+
+    let inputs = await getInputsFromFile(input_test_cases_file);
+    let res = await test_inputs(timeout_in_second, command, inputs);
+
+    return {
+        output: res,
+        inputs: inputs
+    }
+
+}
+
 module.exports = {
     dotnet,
     git,
@@ -187,6 +203,7 @@ module.exports = {
     wait,
     child_process_inputs,
     log,
-    getInputsFromFile
+    getInputsFromFile,
+    run_test_cases_from_file
 }
 

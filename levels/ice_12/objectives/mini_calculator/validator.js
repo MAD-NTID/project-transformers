@@ -6,8 +6,9 @@ Node.js module (since that's what this is!)
 const assert = require("assert");
 const R = require("ramda");
 const { isTwilio } = require("../lib/example_helper");
-const {isFolderExist, dotnet, readFileAsync, getInputsFromFile, test_inputs, dotnetExecutionBinary, log} = require("../../../github/objectives/lib/utility");
+const {isFolderExist, dotnet, readFileAsync, getInputsFromFile, test_inputs, dotnetExecutionBinary, log, run_test_cases_from_file} = require("../../../github/objectives/lib/utility");
 const path = require("path");
+const {toString} = require("ramda");
 /*
 Objective validators export a single function, which is passed a helper
 object. The helper object contains information passed in from the game UI,
@@ -54,27 +55,88 @@ module.exports = async function (helper) {
     await dotnet(`build ${project}`); //compile
 
     //testing the inputs
-    let inputs = await getInputsFromFile('MiniCalculator/addInput.txt');
-    log(inputs)
-    let res = await test_inputs(5, `${dotnetExecutionBinary()} run --project ${project}`, inputs);
-    await log(res);
 
-    if(!res.replace(/ /g,"").includes("MINICALCULATORVERSION3.0"))
+    let filename = 'MiniCalculator/addInput.txt';
+    let command =  `${dotnetExecutionBinary()} run --project ${project}`;
+    let timeout_in_second = 5;
+
+    let res = await run_test_cases_from_file(command, timeout_in_second, filename);
+
+
+
+    if(!res.output.toString().replace(/ /g,"").includes("MINICALCULATORVERSION3.0"))
       return helper.fail("You must show MINI CALCULATOR VERSION 3.0 as the title of the calculator!");
 
-    let num1 = Number(inputs[1]);
-    let num2 = Number(inputs[2]);
 
-    console.log(res);
+    let num1 = parseInt(res.inputs[1]);
+    let num2 = parseInt(res.inputs[2]);
 
-    if(!res.includes(num1+num2) || !res.includes(num1) || !res.includes(num2))
+
+    if(!res.output.includes(num1+num2) || !res.output.includes(num1) || !res.output.includes(num2))
       return helper.fail("Your program didnt passed the input test for add!");
+
+    //testing the subtract
+    filename = 'MiniCalculator/subtractInput.txt';
+    res = await run_test_cases_from_file(command, timeout_in_second, filename);
+    console.log(res);
+    num1 = parseInt(res.inputs[1]);
+    num2 = parseInt(res.inputs[2]);
+
+    if(!res.output.includes(num1-num2) || !res.output.includes(num1) || !res.output.includes(num2))
+      return helper.fail("Your program didnt passed the input test for subtract!");
+
+    //testing multiply
+    filename = 'MiniCalculator/multiplyInput.txt';
+    res = await run_test_cases_from_file(command, timeout_in_second, filename);
+    console.log(res);
+    num1 = parseInt(res.inputs[1]);
+    num2 = parseInt(res.inputs[2]);
+
+    if(!res.output.includes(num1*num2) || !res.output.includes(num1) || !res.output.includes(num2))
+      return helper.fail("Your program didnt passed the input test for multiply!");
+
+    //test divide
+    filename = 'MiniCalculator/divideInput.txt';
+    res = await run_test_cases_from_file(command, timeout_in_second, filename);
+    console.log(res);
+    num1 = parseInt(res.inputs[1]);
+    num2 = parseInt(res.inputs[2]);
+
+    if(!res.output.toString().includes(num1/num2) || !res.output.toString().includes(num1) || !res.output.toString().includes(num2))
+      return helper.fail("Your program didnt passed the input test for divide!");
+
+    let intException = 'input string was not in a correct format';
+
+    //testing a string as input for menu 1-4
+    filename = 'MiniCalculator/notaNumberAsMenuChoice.txt';
+    res = await run_test_cases_from_file(command, timeout_in_second, filename);
+    if(res.output.toString().toLowerCase().includes(intException))
+      return helper.fail("your program didnt passed the input test for when the user enter a string was tested from the menu 1-4");
+
+    //testing submitting non digit for number 1 and number 2 for menu 1-4
+    await test_inputs(timeout_in_second, command, [1,"a","b"]);
+    await test_inputs(timeout_in_second, command, [2,"a","b"]);
+    await test_inputs(timeout_in_second, command, [3,"a","b"]);
+    await test_inputs(timeout_in_second, command, [4,"a","b"]);
+
+
+    //testing divide by 0 - do not remove this line. The exception is caughted in the try and return appropriately
+    filename = 'MiniCalculator/illegalDivideByZero.txt';
+    res = await run_test_cases_from_file(command, timeout_in_second, filename);
 
 
     return helper.fail("place holder");
 
   }catch(err){
-    log(err, err.stackTrace);
+    if(err.hasOwnProperty('toString')){
+      if(err.message.toString().includes('System.DivideByZeroException'))
+        return helper.fail('Your program didnt passed the input test when we tested divisible by zero for the second number for option 4');
+      else if(err.message.toString().toLowerCase().includes('input string was not in a correct format'))
+        return helper.fail('Your program didnt passed the input test when a string was entered for an int or double variable. Are you forgetting tryparse for the input?');
+      else if(err.message.toString().toLowerCase().replace(/ /g,"").includes('commandfailed:dotnetbuild'))
+        return helper.fail('We were not able to compile the project due to syntax error(s)');
+    }
+
     return helper.fail(err);
   }
 

@@ -77,7 +77,7 @@ module.exports = async function (helper) {
 
   }catch(err){
     await log(err);
-    if(err.message.toLowerCase().includes('input string was not in a correct format'))
+    if(err.message.toString().toLowerCase().includes('input string was not in a correct format'))
       return helper.fail("Your program didn't pass the test case when a bad input was entered for age. Hint: use try parse to verify before attempting to convert");
     return helper.fail(err);
   }
