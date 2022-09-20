@@ -58,7 +58,7 @@ module.exports = async function (helper) {
 
     let filename = 'MiniCalculator/addInput.txt';
     let command =  `${dotnetExecutionBinary()} run --project ${project}`;
-    let timeout_in_second = 5;
+    let timeout_in_second = 10;
 
     let res = await run_test_cases_from_file(command, timeout_in_second, filename);
 
