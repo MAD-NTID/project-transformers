@@ -30,7 +30,7 @@ async function readFileAsync(filename){
         reject(new Error(err));
       else
         {
-          console.log(data);
+          //console.log(data);
           if(!data.includes("$"))
             reject(new Error("You must use string interpolation technique!"));
           if(!data.includes('int.TryParse'))
@@ -70,6 +70,7 @@ module.exports = async function (helper) {
     let res = await run_test_cases_from_file(command, timeout_in_second, filename);
 
     let out = res.output.toString();
+    console.log(out);
 
     if(!out.includes(`Hello ${res.inputs[0]}`) || !out.includes(res.inputs[1]) || !out.includes(parseInt(res.inputs[1]) + 5))
       return helper.fail("Your program did not pass the input test!");
