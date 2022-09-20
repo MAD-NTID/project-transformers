@@ -6,7 +6,7 @@ Node.js module (since that's what this is!)
 const assert = require("assert");
 const R = require("ramda");
 const { isTwilio } = require("../lib/example_helper");
-const {isFolderExist, dotnet, dotnetExecutionBinary, getInputsFromFile, test_inputs, log} = require("../../../github/objectives/lib/utility");
+const {isFolderExist, dotnet, dotnetExecutionBinary, getInputsFromFile, test_inputs, log, run_test_cases_from_file} = require("../../../github/objectives/lib/utility");
 const {spawn} = require("child_process");
 const path = require('path');
 const fs = require('fs')
@@ -63,15 +63,20 @@ module.exports = async function (helper) {
     await dotnet(`build ${project}`); //compile
 
     //testing the inputs
-    let inputs = await getInputsFromFile('SimpleInputs/validInput.txt');
-    let res = await test_inputs(10, `${dotnetExecutionBinary()} run --project ${project}`, inputs);
+    let filename = 'SimpleInputs/validInput.txt';
+    let command =  `${dotnetExecutionBinary()} run --project ${project}`;
+    let timeout_in_second = 10;
 
-    if(!res.includes(`Hello ${inputs[0]}`) || !res.includes(inputs[1]) || !res.includes(60+5))
+    let res = await run_test_cases_from_file(command, timeout_in_second, filename);
+
+    let out = res.output.toString();
+
+    if(!out.includes(`Hello ${res.inputs[0]}`) || !out.includes(res.inputs[1]) || !out.includes(parseInt(res.inputs[1]) + 5))
       return helper.fail("Your program did not pass the input test!");
 
     //testing invalid input
-    inputs = await getInputsFromFile('SimpleInputs/badInput.txt');
-    await test_inputs(10, `${dotnetExecutionBinary()} run --project ${project}`, inputs);
+    filename = 'SimpleInputs/badInput.txt'
+    await run_test_cases_from_file(command, timeout_in_second, filename);
 
 
 
@@ -82,22 +87,6 @@ module.exports = async function (helper) {
     return helper.fail(err);
   }
 
-  // //interact with the program
-  // const spawn = require('child_process').spawn;
-  // const child = spawn(`${dotnetExecutionBinary()} run --project ${project}`);
-  //
-  //
-  // child.stdout.on('data', (data) => {
-  //   helper.fail(data);
-  //   console.log(`stdout: "${data}"`);
-  // });
-  //
-  // child.stdin.write("Kemoy Campbell\n");
-  // //child.stdin.end(); // EOF
-  //
-  // child.on('close', (code) => {
-  //   console.log(`Child process exited with code ${code}.`);
-  // });
 
 
   // The way we usually write validators is to fail fast, and then if we reach
