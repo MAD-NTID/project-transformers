@@ -130,19 +130,18 @@ async function child_process_inputs(child, inputs)
     return new Promise((resolve, reject)=>{
         let contents = '';
         let errors = '';
-        let position = 0;
+
 
 
 
         child.stdout.on('data', (data)=>{
             contents+='stdout:'+data;
             //any remaining inputs from our tests?
-            if(position < inputs.length)
+            if(inputs.length > 0)
             {
-                child.stdin.write(inputs[position]);
-                child.stdin.write(os.EOL);
-                position++;
+                child.stdin.write(inputs[0] + '\n');
                 child.stdout.pipe(child.stdin);
+                inputs.shift();//remove the first element from the array
             }
             
         });
