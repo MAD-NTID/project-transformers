@@ -125,8 +125,6 @@ module.exports = async function (helper) {
     res = await run_test_cases_from_file(command, timeout_in_second, filename);
 
 
-    return helper.fail("place holder");
-
   }catch(err){
     if(err.hasOwnProperty('toString')){
       if(err.message.toString().includes('System.DivideByZeroException'))

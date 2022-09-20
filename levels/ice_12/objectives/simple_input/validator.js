@@ -64,20 +64,20 @@ module.exports = async function (helper) {
 
     //testing the inputs
     let inputs = await getInputsFromFile('SimpleInputs/validInput.txt');
-    let res = await test_inputs(5, `${dotnetExecutionBinary()} run --project ${project}`, inputs);
+    let res = await test_inputs(10, `${dotnetExecutionBinary()} run --project ${project}`, inputs);
 
     if(!res.includes(`Hello ${inputs[0]}`) || !res.includes(inputs[1]) || !res.includes(60+5))
       return helper.fail("Your program did not pass the input test!");
 
     //testing invalid input
     inputs = await getInputsFromFile('SimpleInputs/badInput.txt');
-    await test_inputs(5, `${dotnetExecutionBinary()} run --project ${project}`, inputs);
+    await test_inputs(10, `${dotnetExecutionBinary()} run --project ${project}`, inputs);
 
 
 
   }catch(err){
     await log(err);
-    if(err.message.toString().toLowerCase().includes('input string was not in a correct format'))
+    if(err.message.hasOwnProperty('toString') && err.message.toString().toLowerCase().includes('input string was not in a correct format'))
       return helper.fail("Your program didn't pass the test case when a bad input was entered for age. Hint: use try parse to verify before attempting to convert");
     return helper.fail(err);
   }
