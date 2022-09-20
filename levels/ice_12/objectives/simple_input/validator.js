@@ -72,7 +72,7 @@ module.exports = async function (helper) {
     let out = res.output.toString();
     console.log(out);
 
-    if(!out.includes(`Hello ${res.inputs[0]}`) || !out.includes(res.inputs[1]) || !out.includes(parseInt(res.inputs[1]) + 5))
+    if(!out.includes(res.inputs[0]) || !out.includes(res.inputs[1]) || !out.includes(parseInt(res.inputs[1]) + 5))
       return helper.fail("Your program did not pass the input test!");
 
     //testing invalid input
