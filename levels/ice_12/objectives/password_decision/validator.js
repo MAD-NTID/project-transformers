@@ -6,7 +6,7 @@ Node.js module (since that's what this is!)
 const assert = require("assert");
 const R = require("ramda");
 const { isTwilio } = require("../lib/example_helper");
-const {isFolderExist, dotnet, readFileAsync, getInputsFromFile, test_inputs, dotnetExecutionBinary, log} = require("../../../github/objectives/lib/utility");
+const {isFolderExist, dotnet, readFileAsync, getInputsFromFile, test_inputs, dotnetExecutionBinary, log, run_test_cases_from_file} = require("../../../github/objectives/lib/utility");
 const path = require("path");
 
 /*
@@ -44,24 +44,26 @@ module.exports = async function (helper) {
     await dotnet(`build ${project}`); //compile
 
     //testing the inputs
-    let inputs = await getInputsFromFile('PasswordDecision/validInputs.txt');
-    let res = await test_inputs(5, `${dotnetExecutionBinary()} run --project ${project}`, inputs);
+    let filename = 'PasswordDecision/validInputs.txt';
+    let command = `${dotnetExecutionBinary()} run --project ${project}`;
+    let timeout_in_second = 10;
 
-    if(!res.includes('Welcome Tony Stark!'))
+
+    let res = await run_test_cases_from_file(command, timeout_in_second, filename);
+    if(!res.output.toString().includes('Welcome Tony Stark!'))
       return helper.fail("Your program must print Welcome Tony Stark! if the user enter the correct username and password");
 
     //testing bad data
-    inputs = await getInputsFromFile('PasswordDecision/badInputs.txt');
-    res = await test_inputs(5, `${dotnetExecutionBinary()} run --project ${project}`, inputs);
-    //await log(res);
+    filename = 'PasswordDecision/badInputs.txt';
+    res = await run_test_cases_from_file(command, timeout_in_second, filename);
+
 
     //testing invalid username or password
-    inputs = await getInputsFromFile('PasswordDecision/invalidUsernameOrPassword.txt');
-    res = await test_inputs(5, `${dotnetExecutionBinary()} run --project ${project}`, inputs);
+    filename = 'PasswordDecision/invalidUsernameOrPassword.txt';
+    res = await run_test_cases_from_file(command, timeout_in_second, filename);
     await log(res);
-    if(!res.includes("Incorrect username or password!"))
+    if(!res.output.toString().includes("Incorrect username or password!"))
       return helper.fail("You must show Incorrect username or password! if the user didnt enter the correct password or username");
-
 
 
   }catch(err){
