@@ -46,11 +46,14 @@ module.exports = async function (helper) {
     if(!programFile.includes('Console.WriteLine') && !programFile.includes('Console.Write'))
       return helper.fail('Missing Displaying the result to the user via the console!');
 
-    if(!programFile.replace(' ', '').includes('numbers[0]='))
+    let contents =programFile.replace(' ', '');
+
+    console.log(contents);
+
+    if(!contents.includes('numbers[0]='))
       return helper.fail('you must assign values by putting in the index eg. variableName[0]=YourValue;');
 
-    let display = programFile.replace(' ', '');
-    if(!display.includes('Console.WriteLine(numbers[0])') && !display.includes('Console.Write(numbers[0])'))
+    if(!contents.includes('Console.WriteLine(numbers[0])') && !contents.includes('Console.Write(numbers[0])'))
       return helper.fail('You must use include the variable name and index to display the result to the console');
 
     await dotnet(`build ${project}`); //compile
