@@ -1,0 +1,18 @@
+{
+  "title": "13- Learning Arrays",
+  "description": "Working with Arrays",
+  "questTitle": "Working with arrays",
+  "questDescription": "Array is one of the fundamental building block of programming. In this lesson, you will become familiar with working with arrays",
+  "mission_icon": "array.png",
+  "is_mission": true,
+  "priority": 13,
+  "backgroundMusic": "hackertheme_104771b",
+  "backgroundEffect": {
+    "key": "vr",
+    "options": {}
+  },
+  "flavorTextOverrides": {
+    "bookshelf": "There's nothing like a good book."
+  },
+  "objectives": ["clone_the_classroom","instructor_sign_off", "mini_calculator","password_decision","simple_array_int"]
+}
