@@ -1,4 +1,11 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
  "height":32,
  "infinite":false,
  "layers":[
@@ -94,8 +101,8 @@
                  "type":"",
                  "visible":true,
                  "width":79.9804,
-                 "x":37.5055000344,
-                 "y":415.435844513244
+                 "x":183.271685409342,
+                 "y":529.00827115507
                 }, 
                 {
                  "gid":10011,
@@ -117,8 +124,8 @@
                  "type":"",
                  "visible":true,
                  "width":79.9804,
-                 "x":36.6248670794634,
-                 "y":258.683178534572
+                 "x":32.153511699864,
+                 "y":390.141026694796
                 }, 
                 {
                  "gid":10011,
@@ -244,8 +251,8 @@
                  "type":"",
                  "visible":true,
                  "width":79.9804,
-                 "x":181.048671689026,
-                 "y":505.260405916753
+                 "x":29.9168598585649,
+                 "y":273.644197253502
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -271,7 +278,7 @@
  "nextobjectid":151,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.8.2",
+ "tiledversion":"2020.06.10",
  "tileheight":24,
  "tilesets":[
         {
@@ -301,6 +308,6 @@
         }],
  "tilewidth":24,
  "type":"map",
- "version":"1.8",
+ "version":1.4,
  "width":32
 }
