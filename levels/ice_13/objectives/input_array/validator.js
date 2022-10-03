@@ -27,35 +27,8 @@ module.exports = async function (helper) {
   //attempt to compile the project
   try{
       const { answer1} = helper.validationFields;
-      let projectName = 'SimpleArrayHardcoded';
-      let parentFolder = helper.env.TQ_GITHUB_CLONE_PATH_ICE_13_CLASSROOM;
-      let project = path.resolve(parentFolder,projectName);
-      let fullPath = path.resolve(project,'Program.cs');
-      console.log(project);
 
-    //does the project exist?
-    isFolderExist(project);
-    let programFile = await readFileAsync(fullPath);
-
-    //do some basic validations to make sure the stuff we asked for are there
-    let declarationRegex = /int\[\]\s+numbers\s*=\s*new\s+int\[10\]\s*;/gm;
-
-    if(!programFile.match(declarationRegex))
-      return helper.fail('Incorrect array variable declaration!');
-
-    if(!programFile.includes('Console.WriteLine') && !programFile.includes('Console.Write'))
-      return helper.fail('Missing Displaying the result to the user via the console!');
-
-    if(!programFile.replace(' ', '').includes('numbers[0]='))
-      return helper.fail('you must assign values by putting in the index eg. variableName[0]=YourValue;');
-
-    let display = programFile.replace(' ', '');
-    if(!display.includes('Console.WriteLine(numbers[0])') && !display.includes('Console.Write(numbers[0])'))
-      return helper.fail('You must use include the variable name and index to display the result to the console');
-
-    await dotnet(`build ${project}`); //compile
-
-    return helper.success('Yay!!!');
+      return helper.fail("You really need to wait until Wednesday!");
 
 
   }catch(err){
@@ -64,10 +37,4 @@ module.exports = async function (helper) {
   }
 
 
-
-  // The way we usually write validators is to fail fast, and then if we reach
-  // the end, we know the user got all the answers right!
-  helper.success(`
-    Hooray! You did it!
-  `);
 };

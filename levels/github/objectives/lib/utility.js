@@ -192,6 +192,11 @@ async function run_test_cases_from_file(command, timeout_in_second,input_test_ca
 
 }
 
+function stripSpaces(content)
+{
+    return content.replace(/\s+/g, '');
+}
+
 module.exports = {
     dotnet,
     git,
@@ -204,6 +209,7 @@ module.exports = {
     child_process_inputs,
     log,
     getInputsFromFile,
-    run_test_cases_from_file
+    run_test_cases_from_file,
+    stripSpaces
 }
 

@@ -6,7 +6,7 @@
 const assert = require("assert");
 const R = require("ramda");
 const {isFolderExist, dotnet, dotnetExecutionBinary, getInputsFromFile, test_inputs, log, run_test_cases_from_file,
-  readFileAsync
+  readFileAsync, stripSpaces
 } = require("../../../github/objectives/lib/utility");
 const path = require('path');
 
@@ -43,22 +43,21 @@ module.exports = async function (helper) {
     if(!programFile.match(declarationRegex))
       return helper.fail('Incorrect array variable declaration!');
 
-    if(!programFile.includes('Console.WriteLine') && !programFile.includes('Console.Write'))
-      return helper.fail('Missing Displaying the result to the user via the console!');
 
-    let contents =programFile.replace(' ', '');
 
-    console.log(contents);
+    let contents = stripSpaces(programFile);
+
 
     if(!contents.includes('numbers[0]='))
       return helper.fail('you must assign values by putting in the index eg. variableName[0]=YourValue;');
+
+      if(!contents.includes('Console.WriteLine') && !contents.includes('Console.Write'))
+          return helper.fail('Missing Displaying the result to the user via the console!');
 
     if(!contents.includes('Console.WriteLine(numbers[0])') && !contents.includes('Console.Write(numbers[0])'))
       return helper.fail('You must use include the variable name and index to display the result to the console');
 
     await dotnet(`build ${project}`); //compile
-
-    return helper.success('Yay!!!');
 
 
   }catch(err){

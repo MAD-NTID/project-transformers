@@ -6,7 +6,7 @@
 const assert = require("assert");
 const R = require("ramda");
 const {isFolderExist, dotnet, dotnetExecutionBinary, getInputsFromFile, test_inputs, log, run_test_cases_from_file,
-  readFileAsync
+  readFileAsync, stripSpaces
 } = require("../../../github/objectives/lib/utility");
 const path = require('path');
 
@@ -43,20 +43,21 @@ module.exports = async function (helper) {
     if(!programFile.match(declarationRegex))
       return helper.fail('Incorrect array variable declaration!');
 
-    if(programFile.includes('assignIndex'))
+    let contents = stripSpaces(programFile);
+
+    if(contents.includes('assignIndex'))
       return helper.fail('You cannot use assignIndex!');
 
-    if(programFile.includes('displayIndex'))
+    if(contents.includes('displayIndex'))
       return helper.fail('You cannot use displayIndex!');
 
-    if(!programFile.includes("index"))
+    if(!contents.includes("index"))
       return helper.fail('Index is missing!');
 
-    if(!programFile.replace(' ','').includes('index=0'))
+    if(!contents.includes('index=0'))
       return helper.fail('the index is not initialized to 0');
 
-    let index = programFile.replace(' ', '').toLowerCase();
-    if(!index.includes('index++') && !index.includes('index+=1') && !index.includes('index=index+1'))
+    if(!contents.includes('index++') && !contents.includes('index+=1') && !contents.includes('index=index+1'))
       return helper.fail('you are missing the index incremental');
 
     await dotnet(`build ${project}`); //compile

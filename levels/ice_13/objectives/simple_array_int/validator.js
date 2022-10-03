@@ -6,7 +6,7 @@
 const assert = require("assert");
 const R = require("ramda");
 const {isFolderExist, dotnet, dotnetExecutionBinary, getInputsFromFile, test_inputs, log, run_test_cases_from_file,
-  readFileAsync
+  readFileAsync, stripSpaces
 } = require("../../../github/objectives/lib/utility");
 const path = require('path');
 
@@ -43,20 +43,22 @@ module.exports = async function (helper) {
     if(!programFile.match(declarationRegex))
       return helper.fail('Incorrect array variable declaration!');
 
-    if(!programFile.includes('assignIndex'))
+    let contents = stripSpaces(programFile);
+
+    if(!contents.includes('assignIndex'))
       return helper.fail('The assignIndex variable is missing!');
 
-    if(!programFile.includes('displayIndex'))
+    if(!contents.includes('displayIndex'))
       return helper.fail('The displayIndex variable is missing!');
 
-    if(!programFile.includes('assignIndex++') && !programFile.replace(' ', '').includes('assignIndex+=1') &&
-        !programFile.replace(' ', '').includes('assignIndex=assignIndex+1'))
+    if(!contents.includes('assignIndex++') && !contents.includes('assignIndex+=1') &&
+        !contents.includes('assignIndex=assignIndex+1'))
     {
       return helper.fail('assignIndex increment is missing!');
     }
 
-    if(!programFile.includes('displayIndex++') && !programFile.replace(' ', '').includes('displayIndex+=1') &&
-        !programFile.replace(' ', '').includes('displayIndex=assignIndex+1'))
+    if(!contents.includes('displayIndex++') && !contents.includes('displayIndex+=1') &&
+        !contents.includes('displayIndex=assignIndex+1'))
     {
       return helper.fail('assignIndex increment is missing!');
     }
