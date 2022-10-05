@@ -246,6 +246,28 @@
                  "width":79.9804,
                  "x":29.9168598585649,
                  "y":273.644197253502
+                }, 
+                {
+                 "height":47.9415204678363,
+                 "id":151,
+                 "name":"exit",
+                 "properties":[
+                        {
+                         "name":"levelName",
+                         "type":"string",
+                         "value":"fog_owl"
+                        }, 
+                        {
+                         "name":"playerEntryPoint",
+                         "type":"string",
+                         "value":"player_entry2"
+                        }],
+                 "rotation":0,
+                 "type":"levelChange",
+                 "visible":true,
+                 "width":29.5038317853456,
+                 "x":734.66672875817,
+                 "y":359.985208118335
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -268,7 +290,7 @@
          "y":0
         }],
  "nextlayerid":57,
- "nextobjectid":151,
+ "nextobjectid":152,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.8.2",
