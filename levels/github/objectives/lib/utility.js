@@ -9,9 +9,13 @@ const os = require("os");
 const path = require('path');
 
 //const variables
-const forLoopRegex = /for\s*\(\s*[a-z]+\s+[a-z]+\s*=\s*\d+\s*;\s*[a-z]+\s*[<>=!]\s*\d+\s*;\s*[a-z]*\s*[\+-]{2}\s*\)\s*{;/gm
+const forLoopRegex = /for\s*\(\s*[a-z]+\s+[a-z]+\s*=\s*\d+\s*;\s*[a-z]+\s*[<>=!]\s*\d+\s*;\s*[a-z]*\s*[\+-]{2}\s*\)\s*/gm
 const whileRegex = /while\s*\(\s*.+\s*\)\s*{\s*.+\s*}/gm
 const doWhileRegex = /while\s*\(\s*.+\s*\)\s*{\s*.+\s*}/;
+
+const normalizeLineEndings = (text) => {
+    return text.replace(/\r\n/gi, '\n').trim()
+}
 
 async function log(content, trace){
     let logFile = path.resolve(__dirname, '../../../../logs/log.txt');
@@ -138,8 +142,6 @@ async function child_process_inputs(child, inputs)
         let index = 0;
 
 
-
-        
         child.stdout.on('data', (data)=>{
             contents+=data;
             //any remaining inputs from our tests?
@@ -160,7 +162,7 @@ async function child_process_inputs(child, inputs)
             if(errors)
                 reject(new Error(errors));
             else
-                resolve(contents);
+                resolve(normalizeLineEndings(contents));
         })
 
         

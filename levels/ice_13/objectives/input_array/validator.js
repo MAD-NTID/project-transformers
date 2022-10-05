@@ -45,30 +45,60 @@ module.exports = async function (helper) {
       console.log(programFile);
 
       //array declaration
-      let declarationRegex = /string\[\]\s+[a-z]+(?:[A-Z][a-z]+)*\s*=\s*new\s*string\[5\]\s*;/gm;
-
-      programFile = stripSpaces(programFile);
+      let declarationRegex = /string\[\]\s+[a-z]+(?:[A-Z][a-z]+)*\s*=\s*new\s*string\[5\];/gm;
       //mandate approprate data type and array declaration
       if(!programFile.match(declarationRegex))
           return helper.fail('You must declare an array to hold 5 family members with the appropriate data type');
 
+      programFile = stripSpaces(programFile);
+
+      let consoleWriteRegex = /Console.Write\(/gm;
+      //we need at least
+      if(!programFile.match(consoleWriteRegex) || programFile.match(consoleWriteRegex).length < 6)
+          return helper.fail("You need 6 Console.Write() to take the inputs from the user for each family members");
+
+
       //mandate input
-      if(!programFile.includes('Console.ReadLine()'))
-          return helper.fail('Your program must take inputs from the user!');
+      let readLineRegex = /Console.ReadLine\(\)/gm;
+      if(!programFile.match(readLineRegex) || programFile.match(readLineRegex).length < 6)
+          return helper.fail('Your program must read 6 inputs from the user!');
+
+      log(programFile);
 
       //probhit for loop
-      if(hasLoop(programFile))
+      if(programFile.match(/for\s*\([a-z]*/gm) || programFile.match(/while\([a-z]*/gm) || programFile.match('do{'))
           return helper.fail('You are not allowed to use loop!');
 
-      //we need at least
-      if(programFile.match(/Console.Write\(".+"\);/gm).length>=5)
-          return helper.fail("You need 5 Console.Write() to take the inputs from the user for each family members");
 
-      if(programFile.match(/Console.WriteLine\(".+"\);/gm).length>=7)
-      return helper.fail("You need at least 7 Console.WriteLine to ouput the final result based on the screenshot")
+
+      let consoleWriteLineRegex=/Console.WriteLine\(/gm;
+      if(!programFile.match(consoleWriteLineRegex) && programFile.match(consoleWriteRegex).length===6)
+        return helper.fail("You must use Console.WriteLine or Console.Write with \n to display the result back to the user!")
 
       //test the program with inputs
-      return helper.fail("we made it here");
+
+      let inputs = [
+          "John Doe",
+          "Johnny Bravo",
+          "Josh Allen",
+          "Lamar Jackson",
+          "Eli Manning",
+          "Drew Bress"
+      ];
+
+      let command =  `${dotnetExecutionBinary()} run --project ${project}`;
+      let res = await test_inputs(15, command, inputs);
+      console.log(res)
+
+      //all inputs must be in the output
+      for(let input of inputs){
+          if(!res.toString().includes(input))
+              return helper.fail('Your program didnt pass the input test. One or more of the inputs didnt showed up in the output');
+      }
+
+
+
+      return helper.success('You did it!!!');
 
 
 
