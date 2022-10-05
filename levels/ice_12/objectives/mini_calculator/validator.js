@@ -62,6 +62,10 @@ module.exports = async function (helper) {
 
     let res = await run_test_cases_from_file(command, timeout_in_second, filename);
 
+    console.log(res);
+    console.log(res.output);
+    console.log(res.inputs);
+
 
 
     if(!res.output.toString().replace(/ /g,"").includes("MINICALCULATORVERSION3.0"))
