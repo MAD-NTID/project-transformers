@@ -8,6 +8,11 @@ const os = require("os");
 
 const path = require('path');
 
+//const variables
+const forLoopRegex = /for\s*\(\s*[a-z]+\s+[a-z]+\s*=\s*\d+\s*;\s*[a-z]+\s*[<>=!]\s*\d+\s*;\s*[a-z]*\s*[\+-]{2}\s*\)\s*{;/gm
+const whileRegex = /while\s*\(\s*.+\s*\)\s*{\s*.+\s*}/gm
+const doWhileRegex = /while\s*\(\s*.+\s*\)\s*{\s*.+\s*}/;
+
 async function log(content, trace){
     let logFile = path.resolve(__dirname, '../../../../logs/log.txt');
 
@@ -179,6 +184,7 @@ async function test_inputs(timeout_in_second, cmd, inputs)
     }
 }
 
+
 async function run_test_cases_from_file(command, timeout_in_second,input_test_cases_file)
 {
 
@@ -190,6 +196,26 @@ async function run_test_cases_from_file(command, timeout_in_second,input_test_ca
         inputs: inputs
     }
 
+}
+
+function hasForLoop(contents)
+{
+    return contents.match(forLoopRegex);
+}
+
+function hasWhileLoop(contents)
+{
+    return contents.match(whileRegex);
+}
+
+function hasDoWhile(contents)
+{
+    return contents.match(doWhileRegex);
+}
+
+function hasLoop(contents)
+{
+    return hasForLoop(contents) || hasWhileLoop(contents) || hasDoWhile(contents);
 }
 
 function stripSpaces(content)
@@ -210,6 +236,10 @@ module.exports = {
     log,
     getInputsFromFile,
     run_test_cases_from_file,
-    stripSpaces
+    stripSpaces,
+    hasLoop,
+    hasForLoop,
+    hasWhileLoop,
+    hasDoWhile
 }
 

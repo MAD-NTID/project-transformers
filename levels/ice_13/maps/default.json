@@ -63,12 +63,12 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }, 
                 {
                  "name":"hidden",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }],
          "type":"tilelayer",
          "visible":true,
