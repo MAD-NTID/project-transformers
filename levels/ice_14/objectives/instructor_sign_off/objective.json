@@ -1,0 +1,15 @@
+{
+  "title": "Instructor sign off",
+  "description": "Complete this objective to receive your instructor's sign off",
+  "validation_fields": [
+    {
+      "name": "answer1",
+      "type": "password",
+      "placeholder": "type your answer here",
+      "label": "Instructor signature secret"
+    }
+  ],
+  "rewards": {
+    "xp": 100
+  }
+}

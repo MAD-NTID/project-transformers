@@ -1,0 +1,15 @@
+{
+  "title": "Part 2 - Simple Array Int 2.0",
+  "description": "Working Simple Array",
+  "validation_fields": [
+    {
+      "name": "answer1",
+      "type": "text",
+      "placeholder": "type your answer here",
+      "label": "Did you complete the objective?"
+    }
+  ],
+  "rewards": {
+    "xp": 150
+  }
+}
