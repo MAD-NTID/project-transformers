@@ -6,37 +6,31 @@
       "name": "answer1",
       "type": "text",
       "placeholder": "type your answer here",
-      "label": "\\#1.What is an array?"
+      "label": "\\#1.Which loop is also known as counted loop?"
     },
     {
       "name": "answer2",
-      "type": "boolean",
+      "type": "text",
       "placeholder": "type your answer here",
-      "label": "\\#2. Array allows us to use only 1 variable for a group of data with different values"
+      "label": "\\#2.Which loop operate by checking the condition before running the statement(s) inside the block?"
     },
     {
       "name": "answer3",
       "type": "text",
       "placeholder": "type your answer here",
-      "label": "\\#3.To access the elements in an array, we need to provide the _____________"
+      "label": "\\#3.In general, loop start counting at what number?"
     },
     {
       "name": "answer4",
-      "type": "boolean",
+      "type": "text",
       "placeholder": "type your answer here",
-      "label": "\\#4. The size of an array are fixed(cannot change) once initialized"
+      "label": "\\#4.If you have an array variable called <br/>numbers={2,1,6,-3,-1,-19,-20}<br/>how would you sort it?"
     },
     {
       "name": "answer5",
       "type": "text",
       "placeholder": "type your answer here",
-      "label": "\\#5. The first index in an array is _________"
-    },
-    {
-      "name": "answer6",
-      "type": "text",
-      "placeholder": "type your answer here",
-      "label": "\\#6. Suppose you have an array, string names[] = {\"Neo\",\"Trinity\",\"Morpheus\"};<br/> How would you print the third using console write line?"
+      "label": "\\#5.Using the same variable in #4, how would you reverse the array?"
     }
   ],
   "rewards": {

@@ -1,14 +1,14 @@
 # Coding Assignments
 
 ICE Goals
-In this coding exercise, you will be working with Array to reinforce your understanding of how arrays work
+In this coding exercise, you will be working with Array and loop
 
 Before proceeding with the ICE, create a new repository from GitHub Classroom that is specifically designed to store this exercise.
 
 ## Steps:
 1. Open the terminal
 2. cd into your prefer locations, eg. Desktop, PF1 or any other location where you prefer to store this assignment
-3. [Accept the GitHub Classroom Invitation](https://classroom.github.com/a/p5RY32VW)
+3. [Accept the GitHub Classroom Invitation](https://classroom.github.com/a/fDg5SHi2)
 4. Wait a for a 10 seconds after you clicked on accepted the classroom
 5. Refresh
 6. Copy and the link that appears on screen after you refreshed

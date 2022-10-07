@@ -9,9 +9,9 @@ const os = require("os");
 const path = require('path');
 
 //const variables
-const forLoopRegex = /for\s*\(\s*[a-z]+\s+[a-z]+\s*=\s*\d+\s*;\s*[a-z]+\s*[<>=!]\s*\d+\s*;\s*[a-z]*\s*[\+-]{2}\s*\)\s*/gm
-const whileRegex = /while\s*\(\s*.+\s*\)\s*{\s*.+\s*}/gm
-const doWhileRegex = /while\s*\(\s*.+\s*\)\s*{\s*.+\s*}/;
+const forLoopRegex = /for\s*\(\s*[a-z]+\s*[a-z]+\s*=\s*\d+\s*;\s*[a-z]+\s*[<>=!]\s*\d+\s*;\s*[a-z]*\s*[\+-]{2}\s*\)\s*/gm
+const whileRegex = /while\s*\(\s*.+\s*\)\s*/gm
+const doWhileRegex = /do\s*{.*\s*}/gm;
 
 const normalizeLineEndings = (text) => {
     return text.replace(/\r\n/gi, '\n').trim()
@@ -202,22 +202,29 @@ async function run_test_cases_from_file(command, timeout_in_second,input_test_ca
 
 function hasForLoop(contents)
 {
+    return contents.includes('for(')
     return contents.match(forLoopRegex);
 }
 
 function hasWhileLoop(contents)
 {
+    return contents.includes('while(')
     return contents.match(whileRegex);
 }
 
 function hasDoWhile(contents)
 {
-    return contents.match(doWhileRegex);
+    return contents.includes('do{')
 }
 
 function hasLoop(contents)
 {
     return hasForLoop(contents) || hasWhileLoop(contents) || hasDoWhile(contents);
+}
+
+function hasForEach(contents)
+{
+    return contents.includes('foreach(');
 }
 
 function stripSpaces(content)
@@ -242,6 +249,27 @@ module.exports = {
     hasLoop,
     hasForLoop,
     hasWhileLoop,
-    hasDoWhile
+    hasDoWhile,
+    hasForEach,
+    projectInfo
+}
+
+async function projectInfo(parentFolder,projectName)
+{
+    if(!parentFolder)
+        throw "Did you forget to clone the github classroom?";
+
+    let project = path.resolve(parentFolder,projectName);
+    let fullPath = path.resolve(project,'Program.cs');
+
+    isFolderExist(project);
+    let programFile = await readFileAsync(fullPath);
+
+    return {
+        parent:parentFolder,
+        project:project,
+        programCS:fullPath,
+        contents: normalizeLineEndings(programFile)
+    }
 }
 

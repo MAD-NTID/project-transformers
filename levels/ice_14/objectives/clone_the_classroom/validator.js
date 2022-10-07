@@ -31,6 +31,8 @@ module.exports = async function (helper) {
 
     isFolderExist(answer2);
     await git(`-C ${answer2} status`)
+    if (!answer2.includes('ice-14') || !answer2.includes(answer1))
+        return helper.fail("The path is not the correct github classroom path");
   }
   catch(err){
     return helper.fail(err);
@@ -41,5 +43,5 @@ module.exports = async function (helper) {
 
   // The way we usually write validators is to fail fast, and then if we reach
   // the end, we know the user got all the answers right!
-  helper.success(`Hooray! You did it!`,[{ name: "GITHUB_CLONE_PATH_ICE_13_CLASSROOM", value: answer2 }]);
+  helper.success(`Hooray! You did it!`,[{ name: "GITHUB_CLONE_PATH_ICE_14_CLASSROOM", value: answer2 }]);
 };

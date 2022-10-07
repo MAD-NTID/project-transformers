@@ -1,11 +1,4 @@
 { "compressionlevel":-1,
- "editorsettings":
-    {
-     "export":
-        {
-         "target":"."
-        }
-    },
  "height":32,
  "infinite":false,
  "layers":[
@@ -121,7 +114,7 @@
                         {
                          "name":"objectiveName",
                          "type":"string",
-                         "value":"recap"
+                         "value":"clone_the_classroom"
                         }],
                  "rotation":0,
                  "type":"",
@@ -221,29 +214,6 @@
                  "width":51.0271,
                  "x":239.039968628031,
                  "y":703.806031933767
-                }, 
-                {
-                 "gid":10012,
-                 "height":66.6274950916618,
-                 "id":167,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"hackable",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"objectiveName",
-                         "type":"string",
-                         "value":"input_array"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":24,
-                 "x":254.256652868125,
-                 "y":314.409493140154
                 }, 
                 {
                  "gid":10012,
@@ -371,6 +341,29 @@
                  "width":0,
                  "x":167.474866942638,
                  "y":707.936132465996
+                }, 
+                {
+                 "gid":10012,
+                 "height":68.5359477124183,
+                 "id":176,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"hackable",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"objectiveName",
+                         "type":"string",
+                         "value":"count_up"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":256.59305125559,
+                 "y":315.343309253526
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -379,10 +372,10 @@
          "y":0
         }],
  "nextlayerid":63,
- "nextobjectid":174,
+ "nextobjectid":177,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"2020.06.10",
+ "tiledversion":"1.8.2",
  "tileheight":24,
  "tilesets":[
         {
@@ -412,6 +405,6 @@
         }],
  "tilewidth":24,
  "type":"map",
- "version":1.4,
+ "version":"1.8",
  "width":32
 }

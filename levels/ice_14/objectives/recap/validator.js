@@ -6,6 +6,7 @@ Node.js module (since that's what this is!)
 const assert = require("assert");
 const R = require("ramda");
 const { isTwilio } = require("../lib/example_helper");
+const {stripSpaces} = require("../../../github/objectives/lib/utility");
 
 /*
 Objective validators export a single function, which is passed a helper
@@ -20,25 +21,20 @@ module.exports = async function (helper) {
   // We start by getting the user input from the helper
   const { answer1, answer2, answer3,  answer4, answer5, answer6} = helper.validationFields;
 
-  if(!answer1 || !(answer1.includes('collection') && (answer1.includes('same') || answer1.includes('homogenous '))))
+  if(!answer1 || !answer1.toLowerCase().includes('for'))
     return helper.fail('Incorrect answer for question #1');
 
+  if(!answer2 || !answer2.toLowerCase().includes('while'))
+    return helper.fail('Incorrect answer for question #2');
 
-  if(!answer2 || answer2!=='true')
-    return helper.fail("Incorrect answer for question #2");
+  if(!answer3 || (answer3!=='0' && answer3.toLowerCase()!=='zero'))
+    return helper.fail('Incorrect answer for question #3');
 
-  if(!answer3 || answer3!=='index')
-    return helper.fail("Incorrect answer for question #3");
+  if(!answer4 || !stripSpaces(answer4).includes('Array.Sort(numbers)'))
+    return helper.fail('Incorrect answer for question #4. Please check the powerpoint from the lecture powerpoint');
 
-  if(!answer4 || answer4!=='true')
-    return helper.fail("Incorrect answer for question #4");
-
-
-  if(!answer5 || !answer5.includes('zero') && !answer5.includes('0'))
-    return helper.fail("Incorrect answer for question #5");
-
-  if(!answer6 || !answer6.includes('Console.WriteLine(names[2])'))
-    return helper.fail("Incorrect answer for question #6");
+  if(!answer5 || !stripSpaces(answer5).includes('Array.Reverse(numbers)'))
+    return helper.fail('Incorrect answer for question #5');
 
   helper.success("Hooray!!! You are starting to get basic of arrays");
 
