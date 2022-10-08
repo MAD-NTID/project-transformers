@@ -25,11 +25,7 @@ module.exports = async function (helper) {
   let parentFolder = helper.env.TQ_GITHUB_CLONE_PATH_ICE_14_CLASSROOM;
 
   try{
-    let info = await projectInfo(parentFolder,'CountUp');
-
-    await log(info)
-
-    await log(info.contents);
+    let info = await projectInfo(parentFolder,'CountUpFor');
 
     info.contents = stripSpaces(info.contents);
 
@@ -56,23 +52,24 @@ module.exports = async function (helper) {
 
     let command =  `${dotnetExecutionBinary()} run --project ${info.project}`;
     let runResults = await test_inputs(15, command, []);
+
+    await log("run")
+    await log(runResults);
     let lines = runResults.split("\n");
 
     if(!lines || lines.length === 0)
       return helper.fail('cannot parse the output from your program');
 
-    for(let i = 1; i<= 80000; i++){
-        let found = false;
-        for(let line in lines){
-          if(stripSpaces(line).includes(i.toString())){
-            found = true;
-            break;
-          }
-        }
+    let REQUIRED = 200;
+    if(lines.length !==REQUIRED)
+      return helper.fail(`Your program must output exactly ${REQUIRED} numbers!`);
 
-        if(!found){
-          return helper.fail(`${i} is missing from the counter in your program`);
-        }
+
+    for(let i = 1; i<= REQUIRED; i++){
+      if(!lines.includes(i.toString())){
+        return helper.fail(`Your program is missing ${i} from the counter!`);
+      }
+
     }
 
 
