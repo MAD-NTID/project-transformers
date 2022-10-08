@@ -1,0 +1,15 @@
+{
+  "title": "Part 6 - Working with loop, counting basing on the options provided by the user",
+  "description": "Working Simple Loop",
+  "validation_fields": [
+    {
+      "name": "answer1",
+      "type": "text",
+      "placeholder": "type your answer here",
+      "label": "Did you complete the objective?"
+    }
+  ],
+  "rewards": {
+    "xp": 750
+  }
+}

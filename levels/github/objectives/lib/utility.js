@@ -8,10 +8,12 @@ const os = require("os");
 
 const path = require('path');
 
+const TIMEOUT_IN_SECOND = 15;
+
 //const variables
-const forLoopRegex = /for\s*\(\s*[a-z]+\s+[a-z]+\s*=\s*\d+\s*;\s*[a-z]+\s*[<>=!]\s*\d+\s*;\s*[a-z]*\s*[\+-]{2}\s*\)\s*/gm
-const whileRegex = /while\s*\(\s*.+\s*\)\s*{\s*.+\s*}/gm
-const doWhileRegex = /while\s*\(\s*.+\s*\)\s*{\s*.+\s*}/;
+const forLoopRegex = /for\s*\(\s*[a-z]+\s*[a-z]+\s*=\s*\d+\s*;\s*[a-z]+\s*[<>=!]\s*\d+\s*;\s*[a-z]*\s*[\+-]{2}\s*\)\s*/gm
+const whileRegex = /while\s*\(\s*.+\s*\)\s*/gm
+const doWhileRegex = /do\s*{.*\s*}/gm;
 
 const normalizeLineEndings = (text) => {
     return text.replace(/\r\n/gi, '\n').trim()
@@ -126,48 +128,93 @@ function isFolderExist(path)
 }
 
 
-async function wait(seconds) 
+async function wait(seconds, child)
 {
-    let ms = seconds * 1000;
-    return new Promise((_, reject) => {
-       setTimeout(() => reject(new Error('input testing timeout!')), ms);
-    });
+    let timeout = seconds * 1000;
+
+    return new Promise((resolve, reject)=>
+    {
+        let timedOut = false;
+
+
+        /**
+         * create a setTimeout function where we set the timedout
+         * to true and kill the child process and reject with the
+         * timeout error
+         */
+        const terminatedTimeout = setTimeout(()=>{
+            timedOut = true;
+            reject(new Error('input testing timeout in millseconds'))
+            if(child.pid)
+                kill(child.pid);
+        }, timeout);
+
+
+        //listening for exit event from the child process
+        child.once('exit',(code, signal)=>
+        {
+            if(timedOut) return;
+
+            //cancel the previously timeout as the program ends before the timedout occurred
+            clearTimeout(terminatedTimeout);
+
+            //the process exit with no error
+            resolve(undefined);
+
+        });
+
+        //listening for error event from the child process
+        child.once('error', (error)=>
+        {
+            if(timedOut) return;
+
+            clearTimeout(terminatedTimeout);
+            reject(error);
+        });
+
+    })
+
+
+}
+
+const indent = (text)=> {
+    let str = String(text);
+    str = str.replace(/\r\n/gim, '\n').replace(/\n/gim, '\n  ')
+    return str
 }
 
 async function child_process_inputs(child, inputs)
 {
-    return new Promise((resolve, reject)=>{
-        let contents = '';
-        let errors = '';
-        let index = 0;
+    let contents = '';
+    let errors = '';
+    let index = 0;
 
+    // Start with a single new line
+    process.stdout.write(indent('\n'))
 
-        child.stdout.on('data', (data)=>{
-            contents+=data;
-            //any remaining inputs from our tests?
-            if(index < inputs.length)
-            {
-                child.stdin.write(inputs[index] + '\n');
-                index++;
-            }
-            
-        });
+    child.stdout.on('data',(data)=>{
+        contents+=data;
+        //any remaining inputs from our tests?
+        if(index < inputs.length)
+        {
+            child.stdin.write(inputs[index] + '\n');
+            index++;
+        }
 
-        child.stderr.on('data', (data)=>{
-            errors+=data
-        });
+    });
 
-        child.on('exit', ()=>{
-            process.stdin.destroy();
-            if(errors)
-                reject(new Error(errors));
-            else
-                resolve(normalizeLineEndings(contents));
-        })
+    child.stderr.on('data', (data)=>{
+        process.stderr.write(indent(data));
+        errors+=data
+    });
 
-        
-     
-    })
+    await wait(TIMEOUT_IN_SECOND, child);
+
+    if(errors)
+        throw new Error(errors);
+
+    return normalizeLineEndings(contents);
+
 }
 
 async function test_inputs(timeout_in_second, cmd, inputs)
@@ -175,10 +222,10 @@ async function test_inputs(timeout_in_second, cmd, inputs)
     let child = procexec(cmd);
     try{
 
-        return await Promise.race([wait(timeout_in_second),child_process_inputs(child, inputs)]);
+        return await child_process_inputs(child, inputs);
     }catch(err) {
         if(err.message.includes('timeout')) {
-            throw 'Your program timed out. You might have more inputs than required or your program hangs';
+            throw 'Your program timed out. You might have more inputs than required or your program hangs. If you are using loop, your loop likely went on forever!';
         }
 
         kill(child.pid);
@@ -202,22 +249,29 @@ async function run_test_cases_from_file(command, timeout_in_second,input_test_ca
 
 function hasForLoop(contents)
 {
+    return contents.includes('for(')
     return contents.match(forLoopRegex);
 }
 
 function hasWhileLoop(contents)
 {
+    return contents.includes('while(')
     return contents.match(whileRegex);
 }
 
 function hasDoWhile(contents)
 {
-    return contents.match(doWhileRegex);
+    return contents.includes('do{')
 }
 
 function hasLoop(contents)
 {
     return hasForLoop(contents) || hasWhileLoop(contents) || hasDoWhile(contents);
+}
+
+function hasForEach(contents)
+{
+    return contents.includes('foreach(');
 }
 
 function stripSpaces(content)
@@ -242,6 +296,27 @@ module.exports = {
     hasLoop,
     hasForLoop,
     hasWhileLoop,
-    hasDoWhile
+    hasDoWhile,
+    hasForEach,
+    projectInfo
+}
+
+async function projectInfo(parentFolder,projectName)
+{
+    if(!parentFolder)
+        throw "Did you forget to clone the github classroom?";
+
+    let project = path.resolve(parentFolder,projectName);
+    let fullPath = path.resolve(project,'Program.cs');
+
+    isFolderExist(project);
+    let programFile = await readFileAsync(fullPath);
+
+    return {
+        parent:parentFolder,
+        project:project,
+        programCS:fullPath,
+        contents: normalizeLineEndings(programFile)
+    }
 }
 

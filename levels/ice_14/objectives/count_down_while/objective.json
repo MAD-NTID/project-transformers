@@ -1,0 +1,15 @@
+{
+  "title": "Part 4 - Working with counting down using while loop",
+  "description": "Working Simple Loop",
+  "validation_fields": [
+    {
+      "name": "answer1",
+      "type": "text",
+      "placeholder": "type your answer here",
+      "label": "Did you complete the objective?"
+    }
+  ],
+  "rewards": {
+    "xp": 250
+  }
+}

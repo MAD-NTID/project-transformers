@@ -1,0 +1,39 @@
+{
+  "title": "Review",
+  "description": "Testing your understanding of the basic concepts",
+  "validation_fields": [
+    {
+      "name": "answer1",
+      "type": "text",
+      "placeholder": "type your answer here",
+      "label": "\\#1.Which loop is also known as counted loop?"
+    },
+    {
+      "name": "answer2",
+      "type": "text",
+      "placeholder": "type your answer here",
+      "label": "\\#2.Which loop operate by checking the condition before running the statement(s) inside the block?"
+    },
+    {
+      "name": "answer3",
+      "type": "text",
+      "placeholder": "type your answer here",
+      "label": "\\#3.In general, loop start counting at what number?"
+    },
+    {
+      "name": "answer4",
+      "type": "text",
+      "placeholder": "type your answer here",
+      "label": "\\#4.If you have an array variable called <br/>numbers={2,1,6,-3,-1,-19,-20}<br/>how would you sort it?"
+    },
+    {
+      "name": "answer5",
+      "type": "text",
+      "placeholder": "type your answer here",
+      "label": "\\#5.Using the same variable in #4, how would you reverse the array?"
+    }
+  ],
+  "rewards": {
+    "xp": 350
+  }
+}

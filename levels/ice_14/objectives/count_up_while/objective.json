@@ -1,0 +1,15 @@
+{
+  "title": "Part 3 - Working with counting up loop using while loop",
+  "description": "Working Simple Loop",
+  "validation_fields": [
+    {
+      "name": "answer1",
+      "type": "text",
+      "placeholder": "type your answer here",
+      "label": "Did you complete the objective?"
+    }
+  ],
+  "rewards": {
+    "xp": 250
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "title": "14- Learning Loops",
+  "description": "Working with Loops",
+  "questTitle": "Working with Loops",
+  "questDescription": "Looping is a fundamental concept in programming. In this exercise, you will work on mastering loops",
+  "mission_icon": "loop.png",
+  "is_mission": true,
+  "priority": 14,
+  "backgroundMusic": "hackertheme_104771b",
+  "backgroundEffect": {
+    "key": "vr",
+    "options": {}
+  },
+  "flavorTextOverrides": {
+    "bookshelf": "There's nothing like a good book."
+  },
+  "objectives": ["clone_the_classroom","instructor_sign_off","recap"]
+}
