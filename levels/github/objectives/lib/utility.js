@@ -192,7 +192,7 @@ async function child_process_inputs(child, inputs)
     // Start with a single new line
     process.stdout.write(indent('\n'))
 
-    child.stdout.on('data', (data)=>{
+    child.stdout.on('data',(data)=>{
         contents+=data;
         //any remaining inputs from our tests?
         if(index < inputs.length)

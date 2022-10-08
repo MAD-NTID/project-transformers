@@ -471,7 +471,7 @@
                         {
                          "name":"objectiveName",
                          "type":"string",
-                         "value":"total_user_control"
+                         "value":"challenge_not_released"
                         }],
                  "rotation":0,
                  "type":"",

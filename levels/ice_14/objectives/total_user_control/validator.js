@@ -56,12 +56,6 @@ module.exports = async function (helper) {
     }
 
 
-
-    runResults = await test_inputs(15, command, [10,-5]);
-    if(!stripSpaces(runResults).includes(stripSpaces("The stopping value cannot have negative number")))
-        return helper.fail('Your program must show "The stopping value cannot have negative number" if the user enter a negative value for the stopping number');
-
-
     return helper.fail('foo');
 
 
