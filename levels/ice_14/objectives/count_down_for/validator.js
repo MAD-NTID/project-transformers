@@ -65,7 +65,7 @@ module.exports = async function (helper) {
       return helper.fail(`Your program must output exactly ${REQUIRED} numbers!`);
 
 
-    for(let i = REQUIRED; i > 0; i--){
+    for(let i = REQUIRED; i >= 0; i--){
       if(!lines.includes(i.toString())){
         return helper.fail(`Your program is missing ${i} from the counter!`);
       }
