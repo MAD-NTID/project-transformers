@@ -32,13 +32,13 @@ module.exports = async function (helper) {
 
 
     //cant use any other loop but for loop
-    if(!hasDoWhile(info.contents))
+    if(hasDoWhile(info.contents))
       return helper.fail("You cannot use do while loop. You must use a while loop");
 
     if(!hasWhileLoop(info.contents))
       return helper.fail("You are missing while loop");
 
-    if(!hasForLoop(info.contents))
+    if(hasForLoop(info.contents))
       return helper.fail('You cannot use for loop. you must use a while loop')
 
     if(hasForEach(info.contents)){
