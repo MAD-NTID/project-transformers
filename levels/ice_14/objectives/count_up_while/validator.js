@@ -60,8 +60,8 @@ module.exports = async function (helper) {
       return helper.fail('cannot parse the output from your program');
 
     let REQUIRED = 200;
-    if(lines.length !==REQUIRED)
-      return helper.fail(`Your program must output exactly ${REQUIRED} numbers!`);
+    // if(lines.length !==REQUIRED)
+    //   return helper.fail(`Your program must output exactly ${REQUIRED} numbers!`);
 
 
     for(let i = 1; i<= REQUIRED; i++){
