@@ -58,12 +58,18 @@ module.exports = async function (helper) {
 
     let lines = runResults.split("\n");
 
+    console.log(lines);
+
     if(!lines || lines.length === 0)
       return helper.fail('cannot parse the output from your program');
 
 
     for(let i = START; i<= REQUIRED; i++){
-      if(!lines.includes(i.toString())){
+      let match = lines.find(element=>{
+        if(element.includes(i))
+          return true;
+      })
+      if(!match){
         return helper.fail(`Your program is missing ${i} from the counter!`);
       }
 
