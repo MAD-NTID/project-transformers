@@ -7,7 +7,7 @@ const assert = require("assert");
 const R = require("ramda");
 const { isTwilio } = require("../lib/example_helper");
 const {stripSpaces, projectInfo, hasWhileLoop, log, hasDoWhile, hasForEach, hasForLoop, test_inputs,
-  dotnetExecutionBinary
+  dotnetExecutionBinary, hasLoop
 } = require("../../../github/objectives/lib/utility");
 
 /*
@@ -25,52 +25,43 @@ module.exports = async function (helper) {
   let parentFolder = helper.env.TQ_GITHUB_CLONE_PATH_ICE_14_CLASSROOM;
 
   try{
-    let info = await projectInfo(parentFolder,'CountDownFor');
+    let info = await projectInfo(parentFolder,'ToInfinityAndBeyond');
 
     info.contents = stripSpaces(info.contents);
 
+    //student must  use a infinite loop
+    if(!info.contents.match(/while(true)/gm) &&!info.contents.match(/while\([a-zA-z]+\)/gm))
+        return helper.fail('You must use a infinite loop!');
 
+    //must prompt for input
+    if(!info.contents.includes('Console.ReadLine()'))
+      return helper.fail("You must get the value from buzz through ReadLine!");
 
-    //cant use any other loop but for loop
-    if(hasDoWhile(info.contents))
-      return helper.fail("You cannot use do while. You must use a for loop");
+    if(!info.contents.includes('break'))
+      return helper.fail("You must use break to break out of the infinite loop once the countdown hits 0");
 
-    if(hasWhileLoop(info.contents))
-      return helper.fail("You cannot use while loop. You must use a for loop");
-
-    if(hasForEach(info.contents)){
-      return helper.fail("You cannot use foreach! you must use a for loop");
-    }
-
-    //must include for loop
-    if(!hasForLoop(info.contents))
-      return helper.fail("You are missing for loop!");
-
-    if(info.contents.includes('56') || info.contents.includes('57') || info.contents.includes('58') || info.contents.includes('59'))
-      return helper.fail("You hardcoded the values. You cannot do that, you must use a for loop");
-
-
+    //all is well,so we can go ahead and run a test
     let command =  `${dotnetExecutionBinary()} run --project ${info.project}`;
-    let runResults = await test_inputs(15, command, []);
+    let runResults = await test_inputs(15, command, [60]);
 
-    await log("run")
-    await log(runResults);
     let lines = runResults.split("\n");
+    console.log(lines);
 
     if(!lines || lines.length === 0)
       return helper.fail('cannot parse the output from your program');
 
-    let REQUIRED = 400;
-    // if(lines.length !==REQUIRED)
-    //   return helper.fail(`Your program must output exactly ${REQUIRED} numbers!`);
 
-
-    for(let i = REQUIRED; i > 0; i--){
-      if(!lines.includes(i.toString())){
+    for(let i = 60; i>=0; i--){
+      let match = lines.find(element=>{
+        if(element.includes(i))
+          return true;
+      })
+      if(!match){
         return helper.fail(`Your program is missing ${i} from the counter!`);
       }
 
     }
+
 
 
   }catch(error){
@@ -78,6 +69,6 @@ module.exports = async function (helper) {
   }
 
 
-  helper.success("Hooray!!! You are starting to get basic of loop");
+  helper.success("Hooray!!! To infinity and beyond!!!");
 
 };

@@ -29,6 +29,12 @@ module.exports = async function (helper) {
 
     info.contents = stripSpaces(info.contents);
 
+    if(!info.contents.includes('start'))
+      return helper.fail('You must use the Console Write to ask the user to enter the starting value!');
+
+    if(!info.contents.includes('stop'))
+      return helper.fail('You must use the Console Write to ask the user to enter the stopping value!');
+
 
     if(!info.contents.includes('Console.ReadLine()')){
       return helper.fail('You need to ask the user for the inputs: the starting value,the stopping value and the count up or down option');
@@ -51,23 +57,35 @@ module.exports = async function (helper) {
     let command =  `${dotnetExecutionBinary()} run --project ${info.project}`;
     let runResults = await test_inputs(15, command, [-55]);
 
-    if(!stripSpaces(runResults).includes(stripSpaces("The starting value cannot have negative number"))){
+    let res = stripSpaces(runResults);
+
+    if(!res.includes(stripSpaces("The starting value cannot have negative number"))){
       return helper.fail('Your program must show "The starting value cannot have negative number" if the user enter a negative value for the starting number');
     }
 
+    if(res.toLowerCase().includes('countup'))
+      return helper.fail('Your program must not show the counts and count up or down menu options if the user enter an invalid starting value');
 
-    return helper.fail('foo');
 
+    //testing invalid stopping number
+    runResults = await test_inputs(15, command, [1,-55]);
+    res = stripSpaces(runResults);
 
+    if(!res.includes(stripSpaces("The stopping value cannot have negative number"))){
+      return helper.fail('Your program must show "The stopping value cannot have negative number" if the user enter a negative value for the starting number');
+    }
+
+    if(res.toLowerCase().includes('countup'))
+      return helper.fail('Your program must not show the counts and count up or down menu options if the user enter an invalid stopping value');
+
+    //testing invalid selection from the menu
     //testing invalid selection for count up/count down option
     runResults = await test_inputs(15, command, [800,805,"P"]);
     if(!stripSpaces(runResults).includes(stripSpaces("Invalid counter option selected! Please select the option 1 or 2")))
       return helper.fail('Your program must show "Invalid counter option selected! Please select the option 1 or 2" if the user select an invalid counting option');
 
-    if(runResults.includes("The starting value cannot have negative number"))
-      return helper.fail('You must show the user, "The starting value cannot have negative number" if a negative number was input as the starting value');
-
     //all is well so we can test valid aprproach
+    //test the count up first
     runResults = await test_inputs(15, command, [800,900,1]);
 
     let lines = runResults.split("\n");
@@ -77,31 +95,42 @@ module.exports = async function (helper) {
 
 
     for(let i = 800; i<= 900; i++){
-      if(!lines.includes(i.toString())){
-        return helper.fail(`Your program is missing ${i} from the counter when we test with our own inputs!`);
+      let match = lines.find(element=>{
+        if(element.includes(i))
+          return true;
+      })
+      if(!match){
+        return helper.fail(`Your program is missing ${i} from the counter!`);
       }
 
     }
 
-    //testing countdown
-    runResults = await test_inputs(15, command, [900,700,2]);
+    //testing the countdown
+    runResults = await test_inputs(15, command, [800,900,2]);
+
     lines = runResults.split("\n");
 
     if(!lines || lines.length === 0)
       return helper.fail('cannot parse the output from your program');
 
-    for(let i = 900; i<= 700; i++){
-      if(!lines.includes(i.toString())){
-        return helper.fail(`Your program is missing ${i} from the counter when we test with our own inputs!`);
+
+    for(let i = 900; i>800; i--){
+      let match = lines.find(element=>{
+        if(element.includes(i))
+          return true;
+      })
+      if(!match){
+        return helper.fail(`Your program is missing ${i} from the counter!`);
       }
 
     }
+
 
   }catch(error){
     return helper.fail(error);
   }
 
 
-  helper.success("Hooray!!! You are starting to get basic of loop");
+  helper.success("Hooray!!! You nailed this!!!");
 
 };

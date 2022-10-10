@@ -14,5 +14,18 @@
   "flavorTextOverrides": {
     "bookshelf": "There's nothing like a good book."
   },
-  "objectives": ["clone_the_classroom","instructor_sign_off","recap"]
+  "objectives": [
+    "clone_the_classroom",
+    "instructor_sign_off",
+    "recap",
+    "user_defined_array_size",
+    "total_user_control",
+    "to_infinity_and_beyond",
+    "names",
+    "count_up_while",
+    "count_up_user_supplied_starting_value",
+    "count_up_for",
+    "count_down_for",
+    "count_down_while"
+  ]
 }

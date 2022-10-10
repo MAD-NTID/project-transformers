@@ -137,7 +137,7 @@
                         {
                          "name":"objectiveName",
                          "type":"string",
-                         "value":"recap"
+                         "value":"to_infinity_and_beyond"
                         }],
                  "rotation":0,
                  "type":"",
@@ -160,7 +160,7 @@
                         {
                          "name":"objectiveName",
                          "type":"string",
-                         "value":"recap"
+                         "value":"names"
                         }],
                  "rotation":0,
                  "type":"",
@@ -252,7 +252,7 @@
                         {
                          "name":"objectiveName",
                          "type":"string",
-                         "value":"input_array"
+                         "value":"challenge_not_released"
                         }],
                  "rotation":0,
                  "type":"",
@@ -275,7 +275,7 @@
                         {
                          "name":"objectiveName",
                          "type":"string",
-                         "value":"input_array"
+                         "value":"user_defined_array_size"
                         }],
                  "rotation":0,
                  "type":"",
@@ -471,7 +471,7 @@
                         {
                          "name":"objectiveName",
                          "type":"string",
-                         "value":"challenge_not_released"
+                         "value":"total_user_control"
                         }],
                  "rotation":0,
                  "type":"",
@@ -515,7 +515,7 @@
  "nextobjectid":182,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.8.2",
+ "tiledversion":"1.8.6",
  "tileheight":24,
  "tilesets":[
         {

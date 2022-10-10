@@ -194,10 +194,13 @@ async function child_process_inputs(child, inputs)
 
     child.stdout.on('data',(data)=>{
         contents+=data;
+
+        console.log(indent(data));
         //any remaining inputs from our tests?
         if(index < inputs.length)
         {
-            child.stdin.write(inputs[index] + '\n');
+            child.stdin.write(inputs[index] + os.EOL);
+
             index++;
         }
 
@@ -211,7 +214,7 @@ async function child_process_inputs(child, inputs)
     await wait(TIMEOUT_IN_SECOND, child);
 
     if(errors)
-        throw new Error(errors);
+        throw new Error(normalizeLineEndings(errors));
 
     return normalizeLineEndings(contents);
 
@@ -219,6 +222,7 @@ async function child_process_inputs(child, inputs)
 
 async function test_inputs(timeout_in_second, cmd, inputs)
 {
+    console.log("The input length is: "+inputs.length);
     let child = procexec(cmd);
     try{
 
@@ -298,7 +302,8 @@ module.exports = {
     hasWhileLoop,
     hasDoWhile,
     hasForEach,
-    projectInfo
+    projectInfo,
+    normalizeLineEndings
 }
 
 async function projectInfo(parentFolder,projectName)
