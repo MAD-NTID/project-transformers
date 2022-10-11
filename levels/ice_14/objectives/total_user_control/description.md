@@ -28,6 +28,7 @@ you must show:
    - "Invalid counter option selected! Please select the option 1 or 2"
 
 3. Your program must show the error message and exit on the invalid actions.
+4. You will need to swap the start and stop variables in for loop when the user select countdown as option
 
 
 ***Screenshot***

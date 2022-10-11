@@ -97,8 +97,8 @@
                  "type":"",
                  "visible":true,
                  "width":51.0271179183914,
-                 "x":143.985403251354,
-                 "y":631.251523830506
+                 "x":21.5774225151999,
+                 "y":468.334427167279
                 }, 
                 {
                  "gid":10011,
@@ -120,8 +120,8 @@
                  "type":"",
                  "visible":true,
                  "width":51.0271,
-                 "x":22.8000518057923,
-                 "y":516.212659871755
+                 "x":451.6683008598,
+                 "y":355.937462073337
                 }, 
                 {
                  "gid":10011,
@@ -143,8 +143,8 @@
                  "type":"",
                  "visible":true,
                  "width":51.0271,
-                 "x":454.202594293318,
-                 "y":421.08574807806
+                 "x":719.273113729162,
+                 "y":341.828782133788
                 }, 
                 {
                  "gid":10011,
@@ -166,100 +166,8 @@
                  "type":"",
                  "visible":true,
                  "width":51.0271,
-                 "x":598.401293287995,
-                 "y":200.246008279125
-                }, 
-                {
-                 "gid":10011,
-                 "height":48,
-                 "id":165,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"hackable",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"objectiveName",
-                         "type":"string",
-                         "value":"recap"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":51.0271,
-                 "x":719.891535748078,
-                 "y":229.199290360733
-                }, 
-                {
-                 "gid":10011,
-                 "height":48,
-                 "id":166,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"hackable",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"objectiveName",
-                         "type":"string",
-                         "value":"recap"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":51.0271,
-                 "x":239.039968628031,
-                 "y":703.806031933767
-                }, 
-                {
-                 "gid":10012,
-                 "height":66.6275,
-                 "id":168,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"hackable",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"objectiveName",
-                         "type":"string",
-                         "value":"input_array"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":24,
-                 "x":471.690124186872,
-                 "y":550.861294352454
-                }, 
-                {
-                 "gid":10012,
-                 "height":58.6795402128918,
-                 "id":169,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"hackable",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"objectiveName",
-                         "type":"string",
-                         "value":"challenge_not_released"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":24,
-                 "x":434.788882318155,
-                 "y":52.4106734180957
+                 "x":234.699882899278,
+                 "y":622.949826648578
                 }, 
                 {
                  "gid":10012,
@@ -281,31 +189,8 @@
                  "type":"",
                  "visible":true,
                  "width":24,
-                 "x":370.637492607924,
-                 "y":144.94763379657
-                }, 
-                {
-                 "gid":10012,
-                 "height":59.815,
-                 "id":171,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"hackable",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"objectiveName",
-                         "type":"string",
-                         "value":"input_array"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":24,
-                 "x":697.639266706091,
-                 "y":554.267544352454
+                 "x":353.024833509197,
+                 "y":748.181207927977
                 }, 
                 {
                  "gid":10012,
@@ -321,14 +206,14 @@
                         {
                          "name":"objectiveName",
                          "type":"string",
-                         "value":"input_array"
+                         "value":"instructor_sign_off"
                         }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":24,
-                 "x":515.403903015967,
-                 "y":649.075350384388
+                 "x":593.780236005303,
+                 "y":651.717249249197
                 }, 
                 {
                  "height":0,
@@ -362,8 +247,8 @@
                  "type":"",
                  "visible":true,
                  "width":24,
-                 "x":256.59305125559,
-                 "y":315.343309253526
+                 "x":330.566219470244,
+                 "y":64.3629170966633
                 }, 
                 {
                  "gid":10012,
@@ -385,8 +270,8 @@
                  "type":"",
                  "visible":true,
                  "width":24,
-                 "x":76.9439284485724,
-                 "y":604.14822755418
+                 "x":258.354317165463,
+                 "y":308.255554695563
                 }, 
                 {
                  "gid":10011,
@@ -408,8 +293,8 @@
                  "type":"",
                  "visible":true,
                  "width":51.0271,
-                 "x":22.9212625214998,
-                 "y":431.287237702098
+                 "x":595.332683230134,
+                 "y":413.674578603371
                 }, 
                 {
                  "gid":10011,
@@ -431,8 +316,8 @@
                  "type":"",
                  "visible":true,
                  "width":51.0271,
-                 "x":21.1599966116271,
-                 "y":343.223942208462
+                 "x":598.85521504988,
+                 "y":251.638114895081
                 }, 
                 {
                  "gid":10012,
@@ -454,8 +339,8 @@
                  "type":"",
                  "visible":true,
                  "width":24,
-                 "x":117.453044375645,
-                 "y":316.18125128999
+                 "x":410.703818369453,
+                 "y":147.980356897145
                 }, 
                 {
                  "gid":10012,
@@ -477,8 +362,30 @@
                  "type":"",
                  "visible":true,
                  "width":24,
-                 "x":434.480908152735,
-                 "y":315.300618335053
+                 "x":669.609907120743,
+                 "y":53.7526307189539
+                }, 
+                {
+                 "height":44.4189886480908,
+                 "id":182,
+                 "name":"exit",
+                 "properties":[
+                        {
+                         "name":"levelName",
+                         "type":"string",
+                         "value":"fog_owl"
+                        }, 
+                        {
+                         "name":"playerEntryPoint",
+                         "type":"string",
+                         "value":"player_entry2"
+                        }],
+                 "rotation":0,
+                 "type":"levelChange",
+                 "visible":true,
+                 "width":38.3101613347094,
+                 "x":726.741032163743,
+                 "y":721.044719642243
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -512,10 +419,10 @@
          "y":0
         }],
  "nextlayerid":64,
- "nextobjectid":182,
+ "nextobjectid":183,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.8.6",
+ "tiledversion":"1.8.2",
  "tileheight":24,
  "tilesets":[
         {
