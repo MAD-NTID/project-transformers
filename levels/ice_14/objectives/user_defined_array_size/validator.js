@@ -46,7 +46,7 @@ module.exports = async function (helper) {
       return helper.fail("You must get the name from the user through ReadLine!");
 
     //checking for hard coded
-    let hardcoded = info.contents.toLowerCase().match(/name:/gm);
+    let hardcoded = info.contents.toLowerCase().match(/enteryourname:/gm);
     if(hardcoded && hardcoded.length > 1)
       return helper.fail("You cannot hardcoded the prompts. You must use loop!");
 
